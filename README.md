@@ -19,6 +19,8 @@ Interactive dashboard for FAOSTAT Macro Indicators and Capital Stock — AFF eco
 
 Сюжет — **сельское хозяйство, лес и рыба (AFF)** на фоне всей экономики, а не полный браузер FAOSTAT.
 
+Интерактивный дашборд --> [FAOSTAT-Macro-Indicators](https://elenatratsevskaya.github.io/AI-project_FAOSTAT-Macro-Indicators/FAOSTAT_Macro_Indicators.html) <br><br>
+
 ## Источник
 
 Данные из официальных нормализованных выгрузок FAOSTAT:
@@ -27,6 +29,8 @@ Interactive dashboard for FAOSTAT Macro Indicators and Capital Stock — AFF eco
 |--------|----------------------|
 | Macro Indicators (макроиндикаторы) | `Macro-Statistics_Key_Indicators_E_All_Data_(Normalized).csv` |
 | Capital Stock (запас капитала) | `Investment_CapitalStock_E_All_Data_(Normalized).csv` |
+
+Источник данных --> [FAOSTAT-Macro-Indicators]() <br><br>
 
 Денежные ряды — в **постоянных долларах США 2015** (*real USD* / *Value US$, 2015 prices* — постоянные доллары США в ценах 2015). Этот базовый год — как опубликованы серии MK/CS в используемой выгрузке, а не своя переоценка.
 
