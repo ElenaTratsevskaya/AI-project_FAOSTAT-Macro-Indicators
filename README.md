@@ -1,6 +1,14 @@
 # AI-project_FAOSTAT-Macro-Indicators
 Interactive dashboard for FAOSTAT Macro Indicators and Capital Stock — AFF economy (Agriculture, forestry &amp; fishing), investment and country profiles
 
+**FAO** (*Food and Agriculture Organization* — Продовольственная и сельскохозяйственная организация ООН) <br> 
+**FAOSTAT** (*FAO Statistics* — статистика ФАО).<br>
+
+<div id="header" align="center">
+<img src="https://cdn1.tenchat.ru/static/vbc-gostinder/2025-05-19/f3d592c4-6f18-4095-8b73-f6d89e8c3f58.png?width=1004&height=525&fmt=webp" title="Cursor" width="133" height="70"/>&nbsp;
+</div>
+<br>
+
 
 
 
