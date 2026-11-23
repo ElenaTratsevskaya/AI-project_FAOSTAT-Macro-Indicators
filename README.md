@@ -19,7 +19,7 @@ Interactive dashboard for FAOSTAT Macro Indicators and Capital Stock — AFF eco
 
 Сюжет — **Сельское хозяйство, лес и рыба (AFF - Agriculture, forestry & fishing)** на фоне всей экономики, а не полный браузер FAOSTAT.
 
-Интерактивный дашборд --> [FAOSTAT-Macro-Indicators](https://elenatratsevskaya.github.io/AI-project_FAOSTAT-Macro-Indicators/FAOSTAT_Macro_Indicators.html) <br><br>
+ --> [Интерактивный дашборд: FAOSTAT-Macro-Indicators](https://elenatratsevskaya.github.io/AI-project_FAOSTAT-Macro-Indicators/FAOSTAT_Macro_Indicators.html) <br><br>
 
 ## Источник
 
