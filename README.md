@@ -17,7 +17,7 @@ Interactive dashboard for FAOSTAT Macro Indicators and Capital Stock — AFF eco
 - **Macro Indicators / MK** (*Macro Indicators* — макроиндикаторы) — **GDP** (*Gross Domestic Product* — ВВП, валовой внутренний продукт), добавленная стоимость, рост и доли секторов
 - **Capital Stock / CS** (*Capital Stock* — запас капитала) — инвестиции AFF (**GFCF**, *Gross Fixed Capital Formation* — валовое накопление основного капитала), чистый запас капитала (**NCS**, *Net Capital Stock*), **AOI** (*Agriculture Orientation Index* — индекс ориентации сельского хозяйства) и **AIR** (*Agriculture Investment Ratio* — интенсивность инвестиций: GFCF AFF / VA AFF)
 
-Сюжет — **сельское хозяйство, лес и рыба (AFF)** на фоне всей экономики, а не полный браузер FAOSTAT.
+Сюжет — **Сельское хозяйство, лес и рыба (AFF - Agriculture, forestry & fishing)** на фоне всей экономики, а не полный браузер FAOSTAT.
 
 Интерактивный дашборд --> [FAOSTAT-Macro-Indicators](https://elenatratsevskaya.github.io/AI-project_FAOSTAT-Macro-Indicators/FAOSTAT_Macro_Indicators.html) <br><br>
 
