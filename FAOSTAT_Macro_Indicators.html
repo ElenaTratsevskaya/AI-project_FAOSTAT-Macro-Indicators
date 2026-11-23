@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FAOSTAT Macro — Overview · Объёмы экономики и капитал</title>
+  <title>FAOSTAT Macro — Overview · Economy volumes and capital</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -93,8 +93,8 @@
     .left-plaque .brand .brand-sub {
       grid-row: 2;
       align-self: start;
-      /* row-gap 16px − 10px = 6px под Macro Indicators, как раньше */
-      margin: -10px 0 0;
+      /* row-gap 16px − 16px ≈ 6px under Macro Indicators (row 1 taller with sheet-sub) */
+      margin: -16px 0 0;
       padding: 0;
       font-size: 13px;
       font-weight: 600;
@@ -179,7 +179,7 @@
       overflow: visible;
       align-self: stretch;
       padding-top: 2px;
-      margin-top: 31px; /* низ рамки Год = низ KPI */
+      margin-top: 31px; /* bottom of Year frame = bottom of KPI */
       position: relative;
     }
     .plaque-filters .field {
@@ -270,7 +270,7 @@
       color: #fff;
       background-color: transparent;
     }
-    /* Раскрытый список: синий #2a7fa3 */
+    /* Expanded list: blue #2a7fa3 */
     select option {
       background: #2a7fa3;
       color: #fff;
@@ -370,7 +370,7 @@
       min-width: 0;
       min-height: 0;
       align-self: stretch;
-      margin-top: -10px; /* как у Agriculture, forestry */
+      margin-top: -10px; /* same as Agriculture, forestry */
     }
     #ov-kpiCard, #mc-kpiCard, #cp-kpiCard, #cy-kpiCard {
       flex: 0 0 132px;
@@ -511,14 +511,6 @@
     #cy-map .leaflet-tile-pane {
       max-width: 100%;
     }
-    .map-note {
-      margin: 6px 0 0;
-      flex-shrink: 0;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--muted);
-      line-height: 1.3;
-    }
     #ov-map .leaflet-control-zoom a, #mc-map .leaflet-control-zoom a, #cp-map .leaflet-control-zoom a, #cy-map .leaflet-control-zoom a {
       border: 1px solid #ffcab1 !important;
       border-radius: 0 !important;
@@ -534,6 +526,10 @@
       flex-shrink: 0;
     }
     .card-head h2 { margin: 0; }
+    #ov-structCard h2,
+    #mc-structCard h2 {
+      font-size: 13px;
+    }
     .card-sub {
       margin: 0;
       font-size: 14px;
@@ -550,7 +546,112 @@
       font-size: 11px;
       color: var(--muted);
     }
-    .legend span.box { width: 18px; height: 9px; border-radius: 2px; display: inline-block; }
+    .legend span.box,
+    .card-sub span.box {
+      width: 18px;
+      height: 9px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+    #ov-scatterCard .scatter-body,
+    #cp-scatterCard .scatter-body {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      flex: 1 1 auto;
+      min-height: 0;
+      min-width: 0;
+    }
+    #ov-scatterCard .scatter-body .chart-box,
+    #cp-scatterCard .scatter-body .chart-box {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding-right: 18px;
+    }
+    #ov-scatterCard .scatter-zoom,
+    #cp-scatterCard .scatter-zoom {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 18px;
+      height: 0;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      z-index: 2;
+      pointer-events: none;
+    }
+    #ov-scatterCard .scatter-zoom input[type="range"],
+    #cp-scatterCard .scatter-zoom input[type="range"] {
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      pointer-events: auto;
+      display: block;
+      width: 18px !important;
+      height: 100% !important;
+      margin: 0;
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      outline: none !important;
+      accent-color: #5a6f7a;
+      writing-mode: vertical-lr;
+      direction: rtl;
+      cursor: pointer;
+    }
+    #ov-scatterCard .scatter-zoom input[type="range"]:focus,
+    #ov-scatterCard .scatter-zoom input[type="range"]:focus-visible,
+    #cp-scatterCard .scatter-zoom input[type="range"]:focus,
+    #cp-scatterCard .scatter-zoom input[type="range"]:focus-visible {
+      border: 0 !important;
+      border-color: transparent !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    #ov-scatterCard .scatter-zoom input[type="range"]::-webkit-slider-runnable-track,
+    #cp-scatterCard .scatter-zoom input[type="range"]::-webkit-slider-runnable-track {
+      width: 3px !important;
+      height: 100% !important;
+      border-radius: 999px;
+      background: #5a6f7a !important;
+      border: 0 !important;
+    }
+    #ov-scatterCard .scatter-zoom input[type="range"]::-webkit-slider-thumb,
+    #cp-scatterCard .scatter-zoom input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      width: 11px !important;
+      height: 11px !important;
+      margin: 0 0 0 -4px !important;
+      border-radius: 50%;
+      background: #5a6f7a !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+    #ov-scatterCard .scatter-zoom input[type="range"]::-moz-range-track,
+    #cp-scatterCard .scatter-zoom input[type="range"]::-moz-range-track {
+      width: 3px !important;
+      border-radius: 999px;
+      background: #5a6f7a !important;
+      border: none !important;
+    }
+    #ov-scatterCard .scatter-zoom input[type="range"]::-moz-range-thumb,
+    #cp-scatterCard .scatter-zoom input[type="range"]::-moz-range-thumb {
+      width: 11px !important;
+      height: 11px !important;
+      border-radius: 50%;
+      background: #5a6f7a !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+    #ov-scatterCard .scatter-zoom input[type="range"]::-moz-range-progress,
+    #cp-scatterCard .scatter-zoom input[type="range"]::-moz-range-progress {
+      background: transparent !important;
+      border: 0 !important;
+    }
 
     /* Right of map+KPI: 2x2, same height band */
     .charts-stack {
@@ -576,7 +677,13 @@
     table { width: 100%; border-collapse: collapse; font-size: 12px; table-layout: fixed; }
     col.col-area { width: 32%; }
     col.col-metric { width: auto; }
+    col.col-delta { width: 9%; }
     #cp-tableCard col.col-area { width: 36%; }
+    .td-delta { font-weight: 600; }
+    .td-delta .arrow { font-weight: 700; }
+    .td-delta.up { color: var(--sage); }
+    .td-delta.down { color: #a65d3b; }
+    .td-delta.flat { color: var(--muted); }
     th, td { padding: 4px 6px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     th:first-child, td:first-child { text-align: left; position: sticky; left: 0; background: var(--white); font-size: 12px; white-space: normal; }
     th { color: var(--muted); font-weight: 700; position: sticky; top: 0; background: var(--card); z-index: 1; font-size: 13px; }
@@ -597,10 +704,13 @@
     }
     tr.country-row td:first-child { padding-left: 22px; font-size: 13px; }
     th.active-col { color: var(--yale); box-shadow: inset 0 -2px 0 var(--yale); }
-    #sheet-overview th.active-col { color: #659157; box-shadow: inset 0 -2px 0 #659157; }
+    #sheet-overview th.active-col { color: #5db0d0; box-shadow: inset 0 -2px 0 #5db0d0; }
     #sheet-macro th.active-col { color: #a1c084; box-shadow: inset 0 -2px 0 #a1c084; }
-    #sheet-capital th.active-col { color: #e89a72; box-shadow: inset 0 -2px 0 #e89a72; }
-    #sheet-country th.active-col { color: #5db0d0; box-shadow: inset 0 -2px 0 #5db0d0; }
+    #sheet-capital th.active-col { color: #659157; box-shadow: inset 0 -2px 0 #659157; }
+    #sheet-country th.active-col { color: #00557c; box-shadow: inset 0 -2px 0 #00557c; }
+    #sheet-country tr:hover td { background: #dceef5; }
+    #sheet-country tr.selected td { background: #b7dceb; }
+    #sheet-country tr.region-row:hover td { background: #a8d4e8; }
     #sheet-glossary .glossary-body {
       grid-column: 2 / -1;
       grid-row: 2 / -1;
@@ -621,8 +731,8 @@
       padding: 12px 14px;
       min-width: 0;
     }
-    /* После замера размеров (как скрин 20): только позиция «Денег» вниз */
-    /* Пока нет gl-money-down — скрыт, чтобы не сбить замер размеров эталона */
+    /* After measuring sizes (as screen 20): only move Money down */
+    /* Until gl-money-down — hidden so reference size measure is not skewed */
     #sheet-glossary #gl-faostat { display: none; }
     #sheet-glossary .glossary-body.gl-money-down .gl-card { align-self: start; }
     #sheet-glossary .glossary-body.gl-money-down #gl-sheets {
@@ -641,7 +751,7 @@
     #sheet-glossary .glossary-body.gl-money-down #gl-capital { grid-column: 2; grid-row: 2; }
     #sheet-glossary .glossary-body.gl-money-down #gl-filters { grid-column: 1; grid-row: 3; }
     #sheet-glossary .glossary-body.gl-money-down #gl-money { grid-column: 2; grid-row: 3; overflow: auto; }
-    /* Эталон замера = скрин 20: компактные «Листы», без доп. блоков */
+    /* Measure reference = screen 20: compact Sheets, no extra blocks */
     #sheet-glossary .glossary-body.gl-measure-ref #gl-sheets .gl-sheets-body {
       justify-content: flex-start;
     }
@@ -669,6 +779,7 @@
       padding-left: 1.15em;
     }
     #sheet-glossary #gl-faostat .gl-faostat-body li { margin: 0 0 4px; }
+    #sheet-glossary .sheet-title { color: var(--muted); }
     #sheet-glossary #gl-faostat .gl-faostat-body a {
       color: #00557c;
       font-weight: 650;
@@ -752,7 +863,9 @@
       line-height: 1.4;
       border-left: 0;
     }
-    /* Активный пункт содержания — как фильтры на других листах: синий фон, белый текст */
+    /* Active TOC item — like filters on other sheets: blue bg, white text */
+    #sheet-glossary.lang-en .gl-ru { display: none !important; }
+    #sheet-glossary.lang-ru .gl-en { display: none !important; }
     tr:hover td { background: #f0f6ea; cursor: pointer; }
     tr.selected td { background: #e7f1e2; }
     .heat { border-radius: 4px; padding: 1px 4px; }
@@ -793,29 +906,29 @@
       <div class="plaque-filters">
         <img class="filter-icon" src="./filter_icon.png" alt="" />
         <div class="field">
-          <label>Год <span class="year-val" id="ov-yearLabel">—</span></label>
+          <label>Year <span class="year-val" id="ov-yearLabel">—</span></label>
           <input type="range" id="ov-year" min="1995" max="2023" step="1" />
         </div>
         <div class="field">
-          <label>Территория</label>
+          <label>Territory</label>
           <div class="seg" id="ov-modeSeg">
-            <button type="button" data-mode="countries" class="active">Страны</button>
-            <button type="button" data-mode="regions">Регионы</button>
+            <button type="button" data-mode="countries" class="active">Countries</button>
+            <button type="button" data-mode="regions">Geo-regions</button>
           </div>
         </div>
         <div class="field">
-          <label>Показатель карты*</label>
+          <label>Map indicator</label>
           <div class="seg" id="ov-indicatorSeg"></div>
         </div>
         <div class="field">
-          <label>Сравнение Δ</label>
+          <label>Comparison Δ</label>
           <div class="seg" id="ov-deltaSeg">
-            <button type="button" data-delta="yoy" class="active">vs прошлый год</button>
+            <button type="button" data-delta="yoy" class="active">vs previous year</button>
             <button type="button" data-delta="y2015">vs 2015</button>
           </div>
         </div>
         <div class="field">
-          <label>Peer для топа</label>
+          <label>Peer for top</label>
           <div class="seg" id="ov-peerSeg">
             <button type="button" data-peer="All" class="active">All countries</button>
             <button type="button" data-peer="LDC">LDC</button>
@@ -831,10 +944,10 @@
 
     <header class="top">
       <div class="sheet-heading">
-        <h2 class="sheet-title">Overview · Объёмы экономики и капитал</h2>
-        <p class="sheet-sub">Денежные показатели — в постоянных долларах 2015. «vs 2015» в фильтре — сравнение с годом, не единица цены</p>
+        <h2 class="sheet-title">Overview · Economy volumes and capital</h2>
+        <p class="sheet-sub">Monetary indicators are in constant 2015 US dollars. Filter «vs 2015» compares years, not the price unit</p>
       </div>
-      <nav class="sheet-nav" aria-label="Листы">
+      <nav class="sheet-nav" aria-label="Sheets">
         <a href="#overview" data-sheet="overview" class="active">Overview</a>
         <a href="#macro" data-sheet="macro">Macro</a>
         <a href="#capital" data-sheet="capital">Capital</a>
@@ -851,18 +964,17 @@
 
         <div class="card" id="ov-mapCard">
           <div class="card-head">
-            <h2>Карта · <span id="ov-mapTitle">—</span></h2>
+            <h2>Map · <span id="ov-mapTitle">—</span></h2>
             <div class="legend" id="ov-mapLegend"></div>
           </div>
           <div id="ov-map"></div>
-          <p class="map-note">*Показатель карты меняет данные карты, топа и сортировку таблицы. Цвет виджетов — цвет листа.</p>
         </div>
       </div>
 
       <div class="charts-stack">
         <div class="card" id="ov-topCard">
           <div class="card-head">
-            <h2>Топ-15 · <span id="ov-topTitle">—</span></h2>
+            <h2>Top-15 · <span id="ov-topTitle">—</span></h2>
             <div class="legend" id="ov-topLegend"></div>
           </div>
           <div class="chart-box"><canvas id="ov-topChart"></canvas></div>
@@ -870,7 +982,7 @@
 
         <div class="card" id="ov-structCard">
           <div class="card-head">
-            <h2>Структура · Share AFF vs Manufacturing (% GDP)</h2>
+            <h2>Structure · Share AFF vs Manufacturing (% GDP)</h2>
             <div class="legend" id="ov-structLegend"></div>
           </div>
           <div class="chart-box"><canvas id="ov-structChart"></canvas></div>
@@ -878,7 +990,7 @@
 
         <div class="card" id="ov-trendCard">
           <div class="card-head">
-            <h2>Тренд · GDP + VA AFF</h2>
+            <h2>Trend · GDP + VA AFF</h2>
             <div class="legend" id="ov-trendLegend"></div>
           </div>
           <div class="chart-box"><canvas id="ov-trendChart"></canvas></div>
@@ -886,22 +998,27 @@
 
         <div class="card" id="ov-scatterCard">
           <div class="card-head">
-            <h2>Кросс · GDP/capita × AOI</h2>
-            <div class="legend" id="ov-scatterLegend"></div>
+            <h2>Cross · GDP/capita × AOI · <span id="ov-scatterModeLabel">countries</span></h2>
           </div>
-          <div class="chart-box"><canvas id="ov-scatterChart"></canvas></div>
+          <div class="scatter-body">
+            <div class="chart-box"><canvas id="ov-scatterChart"></canvas></div>
+            <div class="scatter-zoom">
+              <input type="range" id="ov-scatterZoom" min="40" max="100" step="5" value="100" aria-label="Focus" />
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="card" id="ov-tableCard">
         <div class="card-head">
-          <h2>Снимок · <span id="ov-tableModeLabel">Region → Country</span> · <span id="ov-tableSortLabel">—</span></h2>
+          <h2>Snapshot · <span id="ov-tableModeLabel">Geo-region → Country</span> · <span id="ov-tableSortLabel">—</span></h2>
         </div>
         <div class="table-wrap">
           <table>
             <colgroup>
               <col class="col-area" />
-              <col class="col-metric" span="8" />
+              <col class="col-metric" span="7" />
+              <col class="col-delta" />
             </colgroup>
             <thead id="ov-tableHead"></thead>
             <tbody id="ov-tableBody"></tbody>
@@ -920,29 +1037,29 @@
       <div class="plaque-filters">
         <img class="filter-icon" src="./filter_icon.png" alt="" />
         <div class="field">
-          <label>Год <span class="year-val" id="mc-yearLabel">—</span></label>
+          <label>Year <span class="year-val" id="mc-yearLabel">—</span></label>
           <input type="range" id="mc-year" min="1995" max="2023" step="1" />
         </div>
         <div class="field">
-          <label>Территория</label>
+          <label>Territory</label>
           <div class="seg" id="mc-modeSeg">
-            <button type="button" data-mode="countries" class="active">Страны</button>
-            <button type="button" data-mode="regions">Регионы</button>
+            <button type="button" data-mode="countries" class="active">Countries</button>
+            <button type="button" data-mode="regions">Geo-regions</button>
           </div>
         </div>
         <div class="field">
-          <label>Показатель карты*</label>
+          <label>Map indicator</label>
           <div class="seg" id="mc-indicatorSeg"></div>
         </div>
         <div class="field">
-          <label>Сравнение Δ</label>
+          <label>Comparison Δ</label>
           <div class="seg" id="mc-deltaSeg">
-            <button type="button" data-delta="yoy" class="active">vs прошлый год</button>
+            <button type="button" data-delta="yoy" class="active">vs previous year</button>
             <button type="button" data-delta="y2015">vs 2015</button>
           </div>
         </div>
         <div class="field">
-          <label>Peer для топа</label>
+          <label>Peer for top</label>
           <div class="seg" id="mc-peerSeg">
             <button type="button" data-peer="All" class="active">All countries</button>
             <button type="button" data-peer="LDC">LDC</button>
@@ -958,10 +1075,10 @@
 
     <header class="top">
       <div class="sheet-heading">
-        <h2 class="sheet-title">Macro · Рост и структура AFF</h2>
-        <p class="sheet-sub">Рост посчитан по постоянным ценам 2015 (real USD)</p>
+        <h2 class="sheet-title">Macro · AFF growth and structure</h2>
+        <p class="sheet-sub">Growth is calculated at 2015 constant prices (real USD)</p>
       </div>
-      <nav class="sheet-nav" aria-label="Листы">
+      <nav class="sheet-nav" aria-label="Sheets">
         <a href="#overview" data-sheet="overview">Overview</a>
         <a href="#macro" data-sheet="macro" class="active">Macro</a>
         <a href="#capital" data-sheet="capital">Capital</a>
@@ -978,18 +1095,17 @@
 
         <div class="card" id="mc-mapCard">
           <div class="card-head">
-            <h2>Карта · <span id="mc-mapTitle">—</span></h2>
+            <h2>Map · <span id="mc-mapTitle">—</span></h2>
             <div class="legend" id="mc-mapLegend"></div>
           </div>
           <div id="mc-map"></div>
-          <p class="map-note">*Показатель карты меняет данные карты, топа и сортировку таблицы. Цвет виджетов — цвет листа.</p>
         </div>
       </div>
 
       <div class="charts-stack">
         <div class="card" id="mc-topCard">
           <div class="card-head">
-            <h2>Топ-15 · <span id="mc-topTitle">—</span></h2>
+            <h2>Top-15 · <span id="mc-topTitle">—</span></h2>
             <div class="legend" id="mc-topLegend"></div>
           </div>
           <div class="chart-box"><canvas id="mc-topChart"></canvas></div>
@@ -997,7 +1113,7 @@
 
         <div class="card" id="mc-structCard">
           <div class="card-head">
-            <h2>Структура · Share AFF vs Manufacturing (% GDP)</h2>
+            <h2>Structure · Share AFF vs Manufacturing (% GDP)</h2>
             <div class="legend" id="mc-structLegend"></div>
           </div>
           <div class="chart-box"><canvas id="mc-structChart"></canvas></div>
@@ -1005,7 +1121,7 @@
 
         <div class="card" id="mc-trendCard">
           <div class="card-head">
-            <h2>Тренд · GDP growth + VA AFF growth (%)</h2>
+            <h2>Trend · GDP growth + VA AFF growth (%)</h2>
             <div class="legend" id="mc-trendLegend"></div>
           </div>
           <div class="chart-box"><canvas id="mc-trendChart"></canvas></div>
@@ -1013,8 +1129,7 @@
 
         <div class="card" id="mc-scatterCard">
           <div class="card-head">
-            <h2>Сдвиг · Share AFF · год vs 2015 (п.п.)</h2>
-            <div class="legend" id="mc-scatterLegend"></div>
+            <h2 id="mc-shiftTitle">Shift · Δ Share AFF vs previous year (p.p.)</h2>
           </div>
           <div class="chart-box"><canvas id="mc-scatterChart"></canvas></div>
         </div>
@@ -1022,13 +1137,14 @@
 
       <div class="card" id="mc-tableCard">
         <div class="card-head">
-          <h2>Снимок стран · сортировка по показателю карты · <span id="mc-tableSortLabel">—</span></h2>
+          <h2>Snapshot · sorted by map indicator · <span id="mc-tableSortLabel">—</span></h2>
         </div>
         <div class="table-wrap">
           <table>
             <colgroup>
               <col class="col-area" />
-              <col class="col-metric" span="7" />
+              <col class="col-metric" span="6" />
+              <col class="col-delta" />
             </colgroup>
             <thead id="mc-tableHead"></thead>
             <tbody id="mc-tableBody"></tbody>
@@ -1047,29 +1163,29 @@
       <div class="plaque-filters">
         <img class="filter-icon" src="./filter_icon.png" alt="" />
         <div class="field">
-          <label>Год <span class="year-val" id="cp-yearLabel">—</span></label>
+          <label>Year <span class="year-val" id="cp-yearLabel">—</span></label>
           <input type="range" id="cp-year" min="1995" max="2023" step="1" />
         </div>
         <div class="field">
-          <label>Территория</label>
+          <label>Territory</label>
           <div class="seg" id="cp-modeSeg">
-            <button type="button" data-mode="countries" class="active">Страны</button>
-            <button type="button" data-mode="regions">Регионы</button>
+            <button type="button" data-mode="countries" class="active">Countries</button>
+            <button type="button" data-mode="regions">Geo-regions</button>
           </div>
         </div>
         <div class="field">
-          <label>Показатель карты*</label>
+          <label>Map indicator</label>
           <div class="seg" id="cp-indicatorSeg"></div>
         </div>
         <div class="field">
-          <label>Сравнение Δ</label>
+          <label>Comparison Δ</label>
           <div class="seg" id="cp-deltaSeg">
-            <button type="button" data-delta="yoy" class="active">vs прошлый год</button>
+            <button type="button" data-delta="yoy" class="active">vs previous year</button>
             <button type="button" data-delta="y2015">vs 2015</button>
           </div>
         </div>
         <div class="field">
-          <label>Peer для топа</label>
+          <label>Peer for top</label>
           <div class="seg" id="cp-peerSeg">
             <button type="button" data-peer="All" class="active">All countries</button>
             <button type="button" data-peer="LDC">LDC</button>
@@ -1085,10 +1201,10 @@
 
     <header class="top">
       <div class="sheet-heading">
-        <h2 class="sheet-title">Capital · Инвестиции и капитал AFF</h2>
-        <p class="sheet-sub">Инвестиции и капитал AFF — постоянные цены 2015 (real USD)</p>
+        <h2 class="sheet-title">Capital · AFF investment and capital</h2>
+        <p class="sheet-sub">AFF investment and capital — 2015 constant prices (real USD)</p>
       </div>
-      <nav class="sheet-nav" aria-label="Листы">
+      <nav class="sheet-nav" aria-label="Sheets">
         <a href="#overview" data-sheet="overview">Overview</a>
         <a href="#macro" data-sheet="macro">Macro</a>
         <a href="#capital" data-sheet="capital" class="active">Capital</a>
@@ -1105,18 +1221,17 @@
 
         <div class="card" id="cp-mapCard">
           <div class="card-head">
-            <h2>Карта · <span id="cp-mapTitle">—</span></h2>
+            <h2>Map · <span id="cp-mapTitle">—</span></h2>
             <div class="legend" id="cp-mapLegend"></div>
           </div>
           <div id="cp-map"></div>
-          <p class="map-note">*Показатель карты меняет данные карты, топа и сортировку таблицы. Цвет виджетов — цвет листа.</p>
         </div>
       </div>
 
       <div class="charts-stack">
         <div class="card" id="cp-topCard">
           <div class="card-head">
-            <h2>Топ-15 · <span id="cp-topTitle">—</span></h2>
+            <h2>Top-15 · <span id="cp-topTitle">—</span></h2>
             <div class="legend" id="cp-topLegend"></div>
           </div>
           <div class="chart-box"><canvas id="cp-topChart"></canvas></div>
@@ -1124,7 +1239,7 @@
 
         <div class="card" id="cp-structCard">
           <div class="card-head">
-            <h2>Поток vs запас · GFCF AFF и NCS</h2>
+            <h2>Flow vs stock · GFCF AFF and NCS</h2>
             <div class="legend" id="cp-structLegend"></div>
           </div>
           <div class="chart-box"><canvas id="cp-structChart"></canvas></div>
@@ -1132,7 +1247,7 @@
 
         <div class="card" id="cp-trendCard">
           <div class="card-head">
-            <h2>Тренд · GFCF AFF + Net Capital Stock</h2>
+            <h2>Trend · GFCF AFF + Net Capital Stock</h2>
             <div class="legend" id="cp-trendLegend"></div>
           </div>
           <div class="chart-box"><canvas id="cp-trendChart"></canvas></div>
@@ -1140,23 +1255,28 @@
 
         <div class="card" id="cp-scatterCard">
           <div class="card-head">
-            <h2>Квадрант · AOI × AIR</h2>
-            <p class="card-sub">Зоны: ориентация капитала (AOI=1) × интенсивность (медиана AIR).</p>
-            <div class="legend" id="cp-scatterLegend"></div>
+            <h2>Quadrant · AOI × AIR · <span id="cp-scatterModeLabel">countries</span></h2>
+            <p class="card-sub">Zones: capital orientation (AOI=1) × intensity (median AIR <span class="box" style="background:#659157;vertical-align:middle"></span>)</p>
           </div>
-          <div class="chart-box"><canvas id="cp-scatterChart"></canvas></div>
+          <div class="scatter-body">
+            <div class="chart-box"><canvas id="cp-scatterChart"></canvas></div>
+            <div class="scatter-zoom">
+              <input type="range" id="cp-scatterZoom" min="40" max="100" step="5" value="100" aria-label="Focus" />
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="card" id="cp-tableCard">
         <div class="card-head">
-          <h2>Снимок стран · сортировка по показателю карты · <span id="cp-tableSortLabel">—</span></h2>
+          <h2>Snapshot · sorted by map indicator · <span id="cp-tableSortLabel">—</span></h2>
         </div>
         <div class="table-wrap">
           <table>
             <colgroup>
               <col class="col-area" />
-              <col class="col-metric" span="5" />
+              <col class="col-metric" span="4" />
+              <col class="col-delta" />
             </colgroup>
             <thead id="cp-tableHead"></thead>
             <tbody id="cp-tableBody"></tbody>
@@ -1176,7 +1296,7 @@
       <div class="plaque-filters">
         <img class="filter-icon" src="./filter_icon.png" alt="" />
         <div class="field">
-          <label>Год <span class="year-val" id="cy-yearLabel">—</span></label>
+          <label>Year <span class="year-val" id="cy-yearLabel">—</span></label>
           <input type="range" id="cy-year" min="1995" max="2023" step="1" />
         </div>
         <div class="field">
@@ -1184,13 +1304,13 @@
           <select id="cy-countrySelect"></select>
         </div>
         <div class="field">
-          <label>Показатель карты*</label>
+          <label>Map indicator</label>
           <div class="seg" id="cy-indicatorSeg"></div>
         </div>
         <div class="field">
-          <label>Сравнение Δ</label>
+          <label>Comparison Δ</label>
           <div class="seg" id="cy-deltaSeg">
-            <button type="button" data-delta="yoy" class="active">vs прошлый год</button>
+            <button type="button" data-delta="yoy" class="active">vs previous year</button>
             <button type="button" data-delta="y2015">vs 2015</button>
           </div>
         </div>
@@ -1211,10 +1331,10 @@
 
     <header class="top">
       <div class="sheet-heading">
-        <h2 class="sheet-title">Country · Профиль страны</h2>
-        <p class="sheet-sub">Одна страна и сравнение с peer / World</p>
+        <h2 class="sheet-title">Country · Country profile</h2>
+        <p class="sheet-sub">One country compared with peer / World</p>
       </div>
-      <nav class="sheet-nav" aria-label="Листы">
+      <nav class="sheet-nav" aria-label="Sheets">
         <a href="#overview" data-sheet="overview">Overview</a>
         <a href="#macro" data-sheet="macro">Macro</a>
         <a href="#capital" data-sheet="capital">Capital</a>
@@ -1231,18 +1351,17 @@
 
         <div class="card" id="cy-mapCard">
           <div class="card-head">
-            <h2>Карта · <span id="cy-mapTitle">—</span></h2>
+            <h2>Map · <span id="cy-mapTitle">—</span></h2>
             <div class="legend" id="cy-mapLegend"></div>
           </div>
           <div id="cy-map"></div>
-          <p class="map-note">*Показатель карты меняет данные карты, ранга и сортировку таблицы. Цвет виджетов — цвет листа.</p>
         </div>
       </div>
 
       <div class="charts-stack">
         <div class="card" id="cy-topCard">
           <div class="card-head">
-            <h2>Ранг среди peer · <span id="cy-topTitle">—</span></h2>
+            <h2>Rank within peer · <span id="cy-topTitle">—</span></h2>
             <div class="legend" id="cy-topLegend"></div>
           </div>
           <div class="chart-box"><canvas id="cy-topChart"></canvas></div>
@@ -1250,7 +1369,7 @@
 
         <div class="card" id="cy-structCard">
           <div class="card-head">
-            <h2>Сравнение · Country / World / Peer</h2>
+            <h2>Compare · Country / World / Peer</h2>
             <div class="legend" id="cy-structLegend"></div>
           </div>
           <div class="chart-box"><canvas id="cy-structChart"></canvas></div>
@@ -1258,7 +1377,7 @@
 
         <div class="card" id="cy-trendCard">
           <div class="card-head">
-            <h2>Тренд · страна + World + Peer</h2>
+            <h2>Trend · country + World + Peer</h2>
             <div class="legend" id="cy-trendLegend"></div>
           </div>
           <div class="chart-box"><canvas id="cy-trendChart"></canvas></div>
@@ -1266,7 +1385,7 @@
 
         <div class="card" id="cy-scatterCard">
           <div class="card-head">
-            <h2>Радар · страна vs медиана peer</h2>
+            <h2>Radar · country vs peer median</h2>
             <div class="legend" id="cy-scatterLegend"></div>
           </div>
           <div class="chart-box"><canvas id="cy-scatterChart"></canvas></div>
@@ -1275,13 +1394,14 @@
 
       <div class="card" id="cy-tableCard">
         <div class="card-head">
-          <h2>Снимок peer · сортировка по показателю карты · <span id="cy-tableSortLabel">—</span></h2>
+          <h2>Peer snapshot · sorted by map indicator · <span id="cy-tableSortLabel">—</span></h2>
         </div>
         <div class="table-wrap">
           <table>
             <colgroup>
               <col class="col-area" />
-              <col class="col-metric" span="6" />
+              <col class="col-metric" span="5" />
+              <col class="col-delta" />
             </colgroup>
             <thead id="cy-tableHead"></thead>
             <tbody id="cy-tableBody"></tbody>
@@ -1291,7 +1411,7 @@
     </div>
   </div>
 
-  <div class="stage sheet" id="sheet-glossary" data-sheet="glossary" hidden>
+  <div class="stage sheet lang-en" id="sheet-glossary" data-sheet="glossary" hidden>
     <aside class="left-plaque">
       <div class="brand">
         <h1><span class="brand-fao">FAOSTAT</span><span class="brand-macro">Macro Indicators</span></h1>
@@ -1299,14 +1419,20 @@
       </div>
       <div class="plaque-filters">
         <div class="field">
-          <label>Содержание</label>
+          <label><span class="gl-en">Contents</span><span class="gl-ru">Содержание</span></label>
           <div class="seg" id="gl-tocSeg">
-            <button type="button" data-gl-jump="gl-sheets" class="active">Листы</button>
+            <button type="button" data-gl-jump="gl-sheets" class="active"><span class="gl-en">Sheets</span><span class="gl-ru">Листы</span></button>
             <button type="button" data-gl-jump="gl-faostat">FAOSTAT</button>
-            <button type="button" data-gl-jump="gl-macro">Экономика</button>
-            <button type="button" data-gl-jump="gl-capital">Капитал</button>
-            <button type="button" data-gl-jump="gl-filters">Фильтры</button>
-            <button type="button" data-gl-jump="gl-money">Деньги и 2015</button>
+            <button type="button" data-gl-jump="gl-macro"><span class="gl-en">Economy</span><span class="gl-ru">Экономика</span></button>
+            <button type="button" data-gl-jump="gl-capital"><span class="gl-en">Capital</span><span class="gl-ru">Капитал</span></button>
+            <button type="button" data-gl-jump="gl-filters"><span class="gl-en">Filters</span><span class="gl-ru">Фильтры</span></button>
+            <button type="button" data-gl-jump="gl-money"><span class="gl-en">Money and 2015</span><span class="gl-ru">Деньги и 2015</span></button>
+          </div>
+        </div>
+        <div class="field">
+          <div class="seg" id="gl-langSeg">
+            <button type="button" data-gl-lang="en" class="active">EN</button>
+            <button type="button" data-gl-lang="ru">RU</button>
           </div>
         </div>
       </div>
@@ -1317,10 +1443,16 @@
 
     <header class="top">
       <div class="sheet-heading">
-        <h2 class="sheet-title">Glossary · Термины и методология</h2>
-        <p class="sheet-sub">Короткие пояснения к листам, ценам 2015 и индикаторам дашборда</p>
+        <h2 class="sheet-title">
+          <span class="gl-en">Glossary · Terms and methodology</span>
+          <span class="gl-ru">Glossary · Термины и методология</span>
+        </h2>
+        <p class="sheet-sub">
+          <span class="gl-en">Short notes on sheets, 2015 prices, and dashboard indicators</span>
+          <span class="gl-ru">Короткие пояснения к листам, ценам 2015 и индикаторам дашборда</span>
+        </p>
       </div>
-      <nav class="sheet-nav" aria-label="Листы">
+      <nav class="sheet-nav" aria-label="Sheets">
         <a href="#overview" data-sheet="overview">Overview</a>
         <a href="#macro" data-sheet="macro">Macro</a>
         <a href="#capital" data-sheet="capital">Capital</a>
@@ -1331,90 +1463,171 @@
 
     <div class="glossary-body" id="gl-body">
       <div class="gl-card is-active" id="gl-sheets">
-        <h3>Листы дашборда</h3>
+        <h3><span class="gl-en">Sheets</span><span class="gl-ru">Листы дашборда</span></h3>
         <div class="gl-sheets-body">
-          <p class="gl-sheet-line"><strong>Overview</strong> — общая картина «сколько»: GDP, доля AFF, карта и объёмы. Точка входа.</p>
-          <p class="gl-sheet-line"><strong>Macro</strong> — рост и структура: куда едет экономика и AFF, сдвиг доли vs 2015.</p>
-          <p class="gl-sheet-line"><strong>Capital</strong> — инвестиции и капитал AFF: поток, запас, AOI и AIR.</p>
-          <p class="gl-sheet-line"><strong>Country</strong> — профиль одной страны vs peer и мир: ранг, тренд, радар.</p>
-          <p class="gl-sheet-line"><strong>Glossary</strong> — этот лист: термины и методология.</p>
-          <p class="gl-note">Цвет виджетов — цвет листа. Фильтр карты меняет только данные, не хром.</p>
+          <div class="gl-en">
+            <p class="gl-sheet-line"><strong>Overview</strong> — the big picture of “how much”: GDP, AFF share, map and volumes. Entry point.</p>
+            <p class="gl-sheet-line"><strong>Macro</strong> — growth and structure: where the economy and AFF are heading; Share AFF shift follows Comparison Δ.</p>
+            <p class="gl-sheet-line"><strong>Capital</strong> — AFF investment and capital: flow, stock, AOI and AIR.</p>
+            <p class="gl-sheet-line"><strong>Country</strong> — one-country profile vs peer and world: rank, trend, radar.</p>
+            <p class="gl-sheet-line"><strong>Glossary</strong> — this sheet: terms and methodology.</p>
+          </div>
+          <div class="gl-ru">
+            <p class="gl-sheet-line"><strong>Overview</strong> — общая картина «сколько»: GDP, доля AFF, карта и объёмы. Точка входа.</p>
+            <p class="gl-sheet-line"><strong>Macro</strong> — рост и структура: куда едет экономика и AFF; сдвиг Share AFF следует фильтру Сравнение Δ.</p>
+            <p class="gl-sheet-line"><strong>Capital</strong> — инвестиции и капитал AFF: поток, запас, AOI и AIR.</p>
+            <p class="gl-sheet-line"><strong>Country</strong> — профиль одной страны vs peer и мир: ранг, тренд, радар.</p>
+            <p class="gl-sheet-line"><strong>Glossary</strong> — этот лист: термины и методология.</p>
+          </div>
         </div>
       </div>
 
       <div class="gl-card" id="gl-faostat">
         <h3>FAOSTAT</h3>
         <div class="gl-faostat-body">
-          <p><strong>FAOSTAT</strong> — открытая статистическая база Продовольственной и сельскохозяйственной организации ООН (FAO).</p>
-          <p>В ней собраны официальные и оценочные данные по странам мира: сельское хозяйство, лес, рыба, производство, торговля, цены, земля, труд, экономика сектора и др.</p>
-          <p>Для этого дашборда важны два блока FAOSTAT:</p>
-          <ul>
-            <li><strong>Macro Indicators (MK)</strong> — макроэкономика: GDP, доля AFF, рост</li>
-            <li><strong>Capital Stock (CS)</strong> — инвестиции и капитал в AFF</li>
-          </ul>
-          <p>Этот дашборд смотрит на сектор <strong>Agriculture, forestry &amp; fishing (AFF)</strong> — сельское хозяйство, лес и рыба: один сектор среди многих в экономике. На листах AFF — то же самое коротко: VA AFF, Share AFF, инвестиции и капитал AFF.</p>
-          <p>Источник: <a href="https://www.fao.org/faostat/" target="_blank" rel="noopener noreferrer">https://www.fao.org/faostat/</a></p>
+          <div class="gl-en">
+            <p><strong>FAOSTAT</strong> — the open statistical database of the Food and Agriculture Organization of the United Nations (FAO).</p>
+            <p>It holds official and estimated data for countries worldwide: agriculture, forestry, fisheries, production, trade, prices, land, labour, sector economics, and more.</p>
+            <p>This dashboard uses two FAOSTAT domains:</p>
+            <ul>
+              <li><strong>Macro Indicators (MK)</strong> — macroeconomy: GDP, AFF share, growth</li>
+              <li><strong>Capital Stock (CS)</strong> — AFF investment and capital</li>
+            </ul>
+            <p>This dashboard looks at the <strong>Agriculture, forestry &amp; fishing (AFF)</strong> sector — one sector among many in the economy. On the sheets, AFF is the short label for the same: VA AFF, Share AFF, AFF investment and capital.</p>
+            <p>Source: <a href="https://www.fao.org/faostat/" target="_blank" rel="noopener noreferrer">https://www.fao.org/faostat/</a></p>
+          </div>
+          <div class="gl-ru">
+            <p><strong>FAOSTAT</strong> — открытая статистическая база Продовольственной и сельскохозяйственной организации ООН (FAO).</p>
+            <p>В ней собраны официальные и оценочные данные по странам мира: сельское хозяйство, лес, рыба, производство, торговля, цены, земля, труд, экономика сектора и др.</p>
+            <p>Для этого дашборда важны два блока FAOSTAT:</p>
+            <ul>
+              <li><strong>Macro Indicators (MK)</strong> — макроэкономика: GDP, доля AFF, рост</li>
+              <li><strong>Capital Stock (CS)</strong> — инвестиции и капитал в AFF</li>
+            </ul>
+            <p>Этот дашборд смотрит на сектор <strong>Agriculture, forestry &amp; fishing (AFF)</strong> — сельское хозяйство, лес и рыба: один сектор среди многих в экономике. На листах AFF — то же самое коротко: VA AFF, Share AFF, инвестиции и капитал AFF.</p>
+            <p>Источник: <a href="https://www.fao.org/faostat/" target="_blank" rel="noopener noreferrer">https://www.fao.org/faostat/</a></p>
+          </div>
         </div>
       </div>
 
       <div class="gl-card" id="gl-money">
-        <h3>Деньги и год 2015</h3>
-        <div class="gl-term" data-gl-measure-hide>
-          <strong>Почему 2015</strong>
-          <p>Так в FAOSTAT задан базовый год постоянных цен для серий MK / CS в этой выгрузке. Дашборд использует эту линейку, чтобы сравнивать объёмы без инфляции и курса.</p>
+        <h3><span class="gl-en">Money and 2015</span><span class="gl-ru">Деньги и год 2015</span></h3>
+        <div class="gl-en">
+          <div class="gl-term" data-gl-measure-hide>
+            <strong>Why 2015</strong>
+            <p>That is the FAOSTAT base year for constant-price MK / CS series in this extract. The dashboard uses this line so volumes can be compared without inflation and exchange-rate noise.</p>
+          </div>
+          <div class="gl-term">
+            <strong>2015 constant prices (real USD)</strong>
+            <p>Monetary series are in constant 2015 US dollars. Compare years and countries by volume without mixing in inflation and exchange rates. The base year is how these FAOSTAT series are published in this extract.</p>
+          </div>
+          <div class="gl-term">
+            <strong>USD 2015 and (% 2015)</strong>
+            <p><b>USD 2015</b> — level (volume). <b>(% 2015)</b> — growth (%) at the same constant prices. Not “percent of year 2015”.</p>
+          </div>
+          <div class="gl-term">
+            <strong>Filter “vs 2015” is different</strong>
+            <p>In Comparison Δ, vs 2015 = delta to year 2015, not the price unit. USD 2015 / (% 2015) — how it is measured; vs 2015 — which year we compare to.</p>
+          </div>
+          <div class="gl-term">
+            <strong>p.p. (percentage points)</strong>
+            <p>Difference in shares. Share AFF 10% → 12% = +2 p.p., not +20%.</p>
+          </div>
         </div>
-        <div class="gl-term">
-          <strong>Постоянные цены 2015 (real USD)</strong>
-          <p>Денежные ряды — в постоянных долларах 2015. Сравнение лет и стран по объёму без смешения с инфляцией и курсом. Базовый год — так опубликованы серии FAOSTAT в этой выгрузке.</p>
-        </div>
-        <div class="gl-term">
-          <strong>USD 2015 и (% 2015)</strong>
-          <p><b>USD 2015</b> — уровень (объём). <b>(% 2015)</b> — рост (%) по тем же постоянным ценам. Не «процент от года 2015».</p>
-        </div>
-        <div class="gl-term">
-          <strong>Фильтр «vs 2015» — другое</strong>
-          <p>В «Сравнение Δ» кнопка vs 2015 = дельта к 2015 году, не единица цены. USD 2015 / (% 2015) — как измерено; vs 2015 — с каким годом сравниваем.</p>
-        </div>
-        <div class="gl-term">
-          <strong>п.п. (процентные пункты)</strong>
-          <p>Разница долей. Share AFF 10% → 12% = +2 п.п., не +20%.</p>
+        <div class="gl-ru">
+          <div class="gl-term" data-gl-measure-hide>
+            <strong>Почему 2015</strong>
+            <p>Так в FAOSTAT задан базовый год постоянных цен для серий MK / CS в этой выгрузке. Дашборд использует эту линейку, чтобы сравнивать объёмы без инфляции и курса.</p>
+          </div>
+          <div class="gl-term">
+            <strong>Постоянные цены 2015 (real USD)</strong>
+            <p>Денежные ряды — в постоянных долларах 2015. Сравнение лет и стран по объёму без смешения с инфляцией и курсом. Базовый год — так опубликованы серии FAOSTAT в этой выгрузке.</p>
+          </div>
+          <div class="gl-term">
+            <strong>USD 2015 и (% 2015)</strong>
+            <p><b>USD 2015</b> — уровень (объём). <b>(% 2015)</b> — рост (%) по тем же постоянным ценам. Не «процент от года 2015».</p>
+          </div>
+          <div class="gl-term">
+            <strong>Фильтр «vs 2015» — другое</strong>
+            <p>В «Сравнение Δ» кнопка vs 2015 = дельта к 2015 году, не единица цены. USD 2015 / (% 2015) — как измерено; vs 2015 — с каким годом сравниваем.</p>
+          </div>
+          <div class="gl-term">
+            <strong>п.п. (процентные пункты)</strong>
+            <p>Разница долей. Share AFF 10% → 12% = +2 п.п., не +20%.</p>
+          </div>
         </div>
       </div>
 
       <div class="gl-card" id="gl-macro">
-        <h3>Экономика (MK)</h3>
-        <div class="gl-term"><strong>AFF</strong><p>Agriculture, forestry &amp; fishing — сельское хозяйство, лес и рыба.</p></div>
-        <div class="gl-term"><strong>GDP</strong><p>Валовой внутренний продукт — размер экономики.</p></div>
-        <div class="gl-term"><strong>GDP per capita</strong><p>GDP на человека — удобно сравнивать страны разного размера.</p></div>
-        <div class="gl-term"><strong>VA AFF</strong><p>Value Added AFF — валовая добавленная стоимость сектора AFF.</p></div>
-        <div class="gl-term"><strong>Share AFF / Manufacturing</strong><p>Доля сектора в GDP (%). Share AFF — «вес» аграрного сектора; Manufacturing — рядом для структуры.</p></div>
-        <div class="gl-term"><strong>GDP / VA AFF growth</strong><p>Годовой рост (%) по постоянным ценам 2015.</p></div>
+        <h3><span class="gl-en">Economy (MK)</span><span class="gl-ru">Экономика (MK)</span></h3>
+        <div class="gl-en">
+          <div class="gl-term"><strong>AFF</strong><p>Agriculture, forestry &amp; fishing.</p></div>
+          <div class="gl-term"><strong>GDP</strong><p>Gross domestic product — size of the economy.</p></div>
+          <div class="gl-term"><strong>GDP per capita</strong><p>GDP per person — useful for comparing countries of different size.</p></div>
+          <div class="gl-term"><strong>VA AFF</strong><p>Value Added AFF — gross value added of the AFF sector.</p></div>
+          <div class="gl-term"><strong>Share AFF / Manufacturing</strong><p>Sector share of GDP (%). Share AFF — weight of the agri sector; Manufacturing — beside it for structure.</p></div>
+          <div class="gl-term"><strong>GDP / VA AFF growth</strong><p>Annual growth (%) at 2015 constant prices.</p></div>
+        </div>
+        <div class="gl-ru">
+          <div class="gl-term"><strong>AFF</strong><p>Agriculture, forestry &amp; fishing — сельское хозяйство, лес и рыба.</p></div>
+          <div class="gl-term"><strong>GDP</strong><p>Валовой внутренний продукт — размер экономики.</p></div>
+          <div class="gl-term"><strong>GDP per capita</strong><p>GDP на человека — удобно сравнивать страны разного размера.</p></div>
+          <div class="gl-term"><strong>VA AFF</strong><p>Value Added AFF — валовая добавленная стоимость сектора AFF.</p></div>
+          <div class="gl-term"><strong>Share AFF / Manufacturing</strong><p>Доля сектора в GDP (%). Share AFF — «вес» аграрного сектора; Manufacturing — рядом для структуры.</p></div>
+          <div class="gl-term"><strong>GDP / VA AFF growth</strong><p>Годовой рост (%) по постоянным ценам 2015.</p></div>
+        </div>
       </div>
 
       <div class="gl-card" id="gl-capital">
-        <h3>Капитал и инвестиции (CS)</h3>
-        <div class="gl-term"><strong>GFCF AFF</strong><p>Gross Fixed Capital Formation в AFF — поток инвестиций в основной капитал за год (USD 2015).</p></div>
-        <div class="gl-term"><strong>NCS / Net Capital Stock AFF</strong><p>Чистый запас капитала в AFF — накопленный объём, не только вложения за один год.</p></div>
-        <div class="gl-term"><strong>GFCF AFF / GFCF</strong><p>Доля аграрных инвестиций в общем GFCF экономики.</p></div>
-        <div class="gl-term">
-          <strong>AOI — Agriculture Orientation Index</strong>
-          <p>Ориентация инвестиций на AFF относительно доли сектора. Ориентир AOI = 1 («по весу»); &gt; 1 — больше; &lt; 1 — меньше.</p>
+        <h3><span class="gl-en">Capital and investment (CS)</span><span class="gl-ru">Капитал и инвестиции (CS)</span></h3>
+        <div class="gl-en">
+          <div class="gl-term"><strong>GFCF AFF</strong><p>Gross Fixed Capital Formation in AFF — investment flow into fixed capital in the year (USD 2015).</p></div>
+          <div class="gl-term"><strong>NCS / Net Capital Stock AFF</strong><p>Net capital stock in AFF — accumulated stock, not only one year’s investment.</p></div>
+          <div class="gl-term"><strong>GFCF AFF / GFCF</strong><p>Share of AFF investment in total economy GFCF.</p></div>
+          <div class="gl-term">
+            <strong>AOI — Agriculture Orientation Index</strong>
+            <p>How investment is oriented to AFF relative to the sector’s share. Benchmark AOI = 1 (“by weight”); &gt; 1 — more; &lt; 1 — less.</p>
+          </div>
+          <div class="gl-term"><strong>AIR</strong><p>GFCF AFF / VA AFF (%) — investment intensity relative to sector value added.</p></div>
+          <div class="gl-term"><strong>AOI × AIR quadrant</strong><p>Country plane: vertical AOI = 1, horizontal — median AIR; zones below/above 1 × weak/strong AIR.</p></div>
         </div>
-        <div class="gl-term"><strong>AIR</strong><p>GFCF AFF / VA AFF (%) — интенсивность инвестиций относительно добавленной стоимости сектора.</p></div>
-        <div class="gl-term"><strong>Квадрант AOI × AIR</strong><p>Плоскость стран: вертикаль AOI = 1, горизонталь — медиана AIR; зоны ниже/выше 1 × слабый/сильный AIR.</p></div>
+        <div class="gl-ru">
+          <div class="gl-term"><strong>GFCF AFF</strong><p>Gross Fixed Capital Formation в AFF — поток инвестиций в основной капитал за год (USD 2015).</p></div>
+          <div class="gl-term"><strong>NCS / Net Capital Stock AFF</strong><p>Чистый запас капитала в AFF — накопленный объём, не только вложения за один год.</p></div>
+          <div class="gl-term"><strong>GFCF AFF / GFCF</strong><p>Доля аграрных инвестиций в общем GFCF экономики.</p></div>
+          <div class="gl-term">
+            <strong>AOI — Agriculture Orientation Index</strong>
+            <p>Ориентация инвестиций на AFF относительно доли сектора. Ориентир AOI = 1 («по весу»); &gt; 1 — больше; &lt; 1 — меньше.</p>
+          </div>
+          <div class="gl-term"><strong>AIR</strong><p>GFCF AFF / VA AFF (%) — интенсивность инвестиций относительно добавленной стоимости сектора.</p></div>
+          <div class="gl-term"><strong>Квадрант AOI × AIR</strong><p>Плоскость стран: вертикаль AOI = 1, горизонталь — медиана AIR; зоны ниже/выше 1 × слабый/сильный AIR.</p></div>
+        </div>
       </div>
 
       <div class="gl-card" id="gl-filters">
-        <h3>Фильтры и сравнение</h3>
-        <div class="gl-term"><strong>Год</strong><p>Какой год на карте, в KPI и таблице.</p></div>
-        <div class="gl-term"><strong>Показатель карты</strong><p>Что заливает карту и по чему сортируются топ и таблица.</p></div>
-        <div class="gl-term"><strong>Сравнение Δ</strong><p>vs прошлый год — к предыдущему; vs 2015 — к 2015.</p></div>
-        <div class="gl-term"><strong>Peer</strong><p>Группа сравнения: All countries, LDC, SIDS, EU-27. На Country сужает список стран.</p></div>
-        <div class="gl-term">
-          <strong>World и All</strong>
-          <p><b>World</b> — агрегат FAOSTAT «мир». <b>All</b> в Peer — режим «все страны» для сравнения/ранга. При Peer = All колонки иногда совпадают — ограничение сборки.</p>
+        <h3><span class="gl-en">Filters and comparison</span><span class="gl-ru">Фильтры и сравнение</span></h3>
+        <div class="gl-en">
+          <div class="gl-term"><strong>Year</strong><p>Which year on the map, in KPI and the table.</p></div>
+          <div class="gl-term"><strong>Map indicator</strong><p>What fills the map and what top and table sort by.</p></div>
+          <div class="gl-term"><strong>Comparison Δ</strong><p>vs previous year — to the prior year; vs 2015 — to 2015. Drives KPI arrows, table Δ, and Macro Share AFF shift. Does not change map levels or annual-growth series themselves.</p></div>
+          <div class="gl-term"><strong>Peer</strong><p>Comparison group: All countries, LDC, SIDS, EU-27. On Country it narrows the country list.</p></div>
+          <div class="gl-term">
+            <strong>World and All</strong>
+            <p><b>World</b> — FAOSTAT “world” aggregate. <b>All</b> in Peer — “all countries” mode for comparison/rank. When Peer = All, columns sometimes match — a build limit.</p>
+          </div>
+          <div class="gl-term"><strong>Countries / Geo-regions</strong><p>Map and top mode: countries or ready-made FAO Geo-regions.</p></div>
         </div>
-        <div class="gl-term"><strong>Страны / Регионы</strong><p>Режим карты и топов: страны или готовые регионы FAO.</p></div>
+        <div class="gl-ru">
+          <div class="gl-term"><strong>Год</strong><p>Какой год на карте, в KPI и таблице.</p></div>
+          <div class="gl-term"><strong>Показатель карты</strong><p>Что заливает карту и по чему сортируются топ и таблица.</p></div>
+          <div class="gl-term"><strong>Сравнение Δ</strong><p>vs прошлый год — к предыдущему; vs 2015 — к 2015. Влияет на стрелки KPI, колонку Δ в таблице и сдвиг Share AFF на Macro. Не меняет уровни на карте и сами ряды годового роста.</p></div>
+          <div class="gl-term"><strong>Peer</strong><p>Группа сравнения: All countries, LDC, SIDS, EU-27. На Country сужает список стран.</p></div>
+          <div class="gl-term">
+            <strong>World и All</strong>
+            <p><b>World</b> — агрегат FAOSTAT «мир». <b>All</b> в Peer — режим «все страны» для сравнения/ранга. При Peer = All колонки иногда совпадают — ограничение сборки.</p>
+          </div>
+          <div class="gl-term"><strong>Страны / Geo-regions</strong><p>Режим карты и топов: страны или готовые Geo-regions FAO.</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1434,11 +1647,17 @@
     Chart.defaults.plugins.tooltip.padding = 8;
     Chart.defaults.plugins.tooltip.titleFont = { size: 12 };
     Chart.defaults.plugins.tooltip.bodyFont = { size: 12 };
+    Chart.defaults.color = "#5a6f7a";
+    Chart.defaults.font.size = 11;
+    if (Chart.defaults.scale?.ticks) {
+      Chart.defaults.scale.ticks.color = "#5a6f7a";
+      Chart.defaults.scale.ticks.font = { size: 11 };
+    }
 
-    /* Sheet color (Overview = sage). Widgets + map scale; not by map filter. */
-    const SHEET_ACCENT = "#659157";
-    const SHEET_SECONDARY = "#a1c084";
-    const SHEET_SCALE = ["#e8f0e0", "#c5dba8", "#a1c084", "#659157", "#3f5c35"];
+    /* Sheet color (Overview = Sky Surge). Widgets + map scale; not by map filter. */
+    const SHEET_ACCENT = "#5db0d0";
+    const SHEET_SECONDARY = "#2a7fa3";
+    const SHEET_SCALE = ["#e3f3f8", "#b7dceb", "#5db0d0", "#2a7fa3", "#1a6a88"];
 
     const state = {
       data: null,
@@ -1448,6 +1667,7 @@
       country: null,
       deltaMode: "yoy",
       peer: "All",
+      scatterFocus: 100,
       expandedRegions: {},
       map: null,
       geo: null,
@@ -1474,6 +1694,18 @@
         return (n > 0 ? "+" : "") + n.toFixed(d);
       },
     };
+
+    function percentile(arr, p) {
+      const a = arr.filter((v) => Number.isFinite(v)).slice().sort((x, y) => x - y);
+      if (!a.length) return null;
+      if (p >= 100) return a[a.length - 1];
+      if (p <= 0) return a[0];
+      const i = (p / 100) * (a.length - 1);
+      const lo = Math.floor(i);
+      const hi = Math.ceil(i);
+      if (lo === hi) return a[lo];
+      return a[lo] + (a[hi] - a[lo]) * (i - lo);
+    }
 
     function accent() {
       return SHEET_ACCENT;
@@ -1554,7 +1786,7 @@
     }
 
     function scopeArea() {
-      // без выбора — World (или peer-агрегат); иначе выбранная территория
+      // no selection — World (or peer aggregate); else selected territory
       if (!state.country) {
         if (state.peer && state.peer !== "All") {
           return state.data.peers?.[state.peer]?.area || "World";
@@ -1624,6 +1856,12 @@
         state.year = Number(yearInput.value);
         document.getElementById("ov-yearLabel").textContent = state.year;
         renderAll();
+      });
+      const zoomInput = document.getElementById("ov-scatterZoom");
+      zoomInput.value = state.scatterFocus;
+      zoomInput.addEventListener("input", () => {
+        state.scatterFocus = Number(zoomInput.value);
+        renderScatter();
       });
       indSeg.querySelectorAll("button").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -1697,7 +1935,7 @@
         maxBounds: [[-60, -180], [85, 180]],
         maxBoundsViscosity: 1,
       });
-      // мир «на вылет» в рамке виджета — без белого поля слева
+      // world flush in widget frame — no white margin on the left
       state.map.fitBounds([[-48, -168], [72, 168]], { animate: false, padding: [0, 0] });
     }
 
@@ -1727,8 +1965,8 @@
     }
 
     function fixAntimeridian(fc) {
-      // Полоса на карте = заливка полигонов, пересекающих 180° (часто Россия).
-      // Разрезаем MultiPolygon на отдельные Polygon и сдвигаем в [-180, 180].
+      // Map stripe = fill of polygons crossing 180° (often Russia).
+      // Split MultiPolygon into Polygons and shift into [-180, 180].
       const features = [];
       fc.features.forEach((f) => {
         if (!f.geometry) return;
@@ -1814,8 +2052,8 @@
           const selected = row && row.area === state.country;
           return {
             fillColor: inPeer ? colorFor(row?.value, vals, colors) : "#e8e0d8",
-            weight: selected ? 1.5 : 0,
-            color: selected ? accent() : "#ffffff",
+            weight: selected ? 3.75 : 0,
+            color: selected ? "#f3b291" : "#ffffff",
             fillOpacity: inPeer ? 1 : 0.35,
             stroke: selected,
           };
@@ -1859,7 +2097,7 @@
       const t = scopeTrends();
       const ac = accent();
       const specs = [
-        { key: "gdp", label: "GDP", series: t.gdp, fmt: (v) => fmt.num(v, 1) + " mUSD" },
+        { key: "gdp", label: "GDP", series: t.gdp, fmt: (v) => fmt.num(v, 1) + " USD" },
         { key: "gdpPc", label: "GDP / capita", series: t.gdpPc, fmt: (v) => fmt.num(v, 0) + " USD" },
         { key: "shareAff", label: "Share AFF", series: t.shareAff, fmt: (v) => fmt.pct(v) },
         { key: "aoi", label: "AOI", series: t.aoi, fmt: (v) => fmt.num(v, 2) },
@@ -1913,7 +2151,7 @@
       setHtmlLegend("ov-trendLegend", [
         { color: ac, label: "GDP" },
         { color: sec, label: "VA AFF" },
-        { color: ac, label: scopeArea() + " · " + state.year },
+        { color: "#3f5c35", label: scopeArea() + " · " + state.year },
       ]);
       const pointRadius = years.map((y) => (y === state.year ? 4 : 0));
       ensureChart("trend", "ov-trendChart", {
@@ -1922,7 +2160,7 @@
           labels: years,
           datasets: [
             {
-              label: "GDP (лев. ось)",
+              label: "GDP (left axis)",
               data: years.map((y) => seriesVal(t.gdp, y)),
               borderColor: ac,
               backgroundColor: hexAlpha(ac, 0.12),
@@ -1933,7 +2171,7 @@
               yAxisID: "y",
             },
             {
-              label: "VA AFF (прав. ось)",
+              label: "VA AFF (right axis)",
               data: years.map((y) => seriesVal(t.vaAff, y)),
               borderColor: sec,
               tension: 0.2,
@@ -1952,6 +2190,23 @@
           plugins: {
             legend: { display: false },
             yearMarker: { index: yearIdx },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
           },
           scales: {
             x: {
@@ -1963,7 +2218,7 @@
               },
               ticks: {
                 color: "#5a6f7a",
-                font: { size: 10 },
+                font: { size: 11 },
                 autoSkip: false,
                 minRotation: 45,
                 maxRotation: 45,
@@ -1972,7 +2227,7 @@
             },
             y: {
               position: "left",
-              title: { display: true, text: "GDP mUSD", color: ac, font: { size: 11 } },
+              title: { display: true, text: "GDP USD", color: ac, font: { size: 11 } },
               ticks: {
                 color: ac,
                 font: { size: 11 },
@@ -1988,7 +2243,7 @@
             },
             y1: {
               position: "right",
-              title: { display: true, text: "VA AFF mUSD", color: sec, font: { size: 11 } },
+              title: { display: true, text: "VA AFF USD", color: sec, font: { size: 11 } },
               ticks: {
                 color: sec,
                 font: { size: 11 },
@@ -2058,10 +2313,29 @@
             state.country = row.area;
             renderAll();
           },
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
+          },
           scales: {
-            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { font: { size: 10 } } },
-            y: { ticks: { autoSkip: false, font: { size: 11 } }, grid: { display: false } },
+            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { color: "#5a6f7a", font: { size: 11 } } },
+            y: { ticks: { color: "#5a6f7a", autoSkip: false, font: { size: 11 } }, grid: { display: false } },
           },
         },
       });
@@ -2117,10 +2391,29 @@
             state.country = row.area;
             renderAll();
           },
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
+          },
           scales: {
-            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { font: { size: 10 } } },
-            y: { ticks: { font: { size: 11 } }, grid: { display: false } },
+            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { color: "#5a6f7a", font: { size: 11 } } },
+            y: { ticks: { color: "#5a6f7a", font: { size: 11 } }, grid: { display: false } },
           },
         },
       });
@@ -2149,8 +2442,34 @@
       }
       points = points.filter((p) => p.area && Number.isFinite(p.x) && Number.isFinite(p.y));
       const ac = accent();
-      setHtmlLegend("ov-scatterLegend", [{ color: ac, label: state.mode === "regions" ? "regions" : "countries" }]);
-      ensureChart("scatter", "ov-scatterChart", {
+      const xs = points.map((p) => p.x);
+      const ys = points.map((p) => p.y);
+      const focus = state.scatterFocus;
+      const xMax = percentile(xs, focus);
+      const yMax = percentile(ys, focus);
+      const xMin = xs.length ? Math.min(...xs) : 0;
+      const yMin = ys.length ? Math.min(0, ...ys) : 0;
+      const xPad = xMax != null ? Math.max((xMax - xMin) * 0.04, 1) : 0;
+      const yPad = yMax != null ? Math.max((yMax - yMin) * 0.06, 0.05) : 0;
+      const modeLabel = document.getElementById("ov-scatterModeLabel");
+      if (modeLabel) modeLabel.textContent = state.mode === "regions" ? "geo-regions" : "countries";
+
+      function layoutScatterZoom(chart) {
+        const wrap = document.querySelector("#ov-scatterCard .scatter-zoom");
+        const body = document.querySelector("#ov-scatterCard .scatter-body");
+        const canvas = chart?.canvas;
+        if (!wrap || !body || !canvas || !chart?.chartArea) return;
+        const ca = chart.chartArea;
+        const h = ca.bottom - ca.top;
+        if (!(h > 1)) return;
+        const bodyRect = body.getBoundingClientRect();
+        const canvasRect = canvas.getBoundingClientRect();
+        /* Top/bottom of plot grid → slider starts/ends on those edges */
+        wrap.style.top = `${(canvasRect.top - bodyRect.top) + ca.top}px`;
+        wrap.style.height = `${h}px`;
+      }
+
+      const chart = ensureChart("scatter", "ov-scatterChart", {
         type: "scatter",
         data: {
           datasets: [{
@@ -2170,6 +2489,7 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          onResize(c) { layoutScatterZoom(c); },
           onClick(_e, els, chart) {
             if (!els.length) return;
             const p = chart.data.datasets[0].data[els[0].index];
@@ -2189,10 +2509,38 @@
             },
           },
           scales: {
-            x: { title: { display: true, text: "GDP per capita", font: { size: 10 } }, grid: { color: "#e2ebdc" }, ticks: { font: { size: 10 } } },
-            y: { title: { display: true, text: "AOI", font: { size: 11 } }, grid: { color: "#e2ebdc" }, ticks: { font: { size: 11 } } },
+            x: {
+              min: focus < 100 ? Math.max(0, xMin - xPad) : undefined,
+              max: focus < 100 && xMax != null ? xMax + xPad : undefined,
+              title: { display: true, text: "GDP per capita", color: "#5a6f7a", font: { size: 11 } },
+              grid: { color: "#e2ebdc" },
+              ticks: {
+                color: "#5a6f7a", font: { size: 11 },
+                callback(v) {
+                  const n = Number(v);
+                  if (!Number.isFinite(n)) return "";
+                  if (Math.abs(n) >= 1000) return Math.round(n / 1000) + "K";
+                  return String(Math.round(n));
+                },
+              },
+            },
+            y: {
+              min: focus < 100 ? yMin - yPad : undefined,
+              max: focus < 100 && yMax != null ? yMax + yPad : undefined,
+              title: { display: true, text: "AOI", color: "#5a6f7a", font: { size: 11 } },
+              grid: { color: "#e2ebdc" },
+              ticks: { color: "#5a6f7a", font: { size: 11 } },
+            },
           },
         },
+        plugins: [{
+          id: "ovScatterZoomLayout",
+          afterLayout(c) { layoutScatterZoom(c); },
+        }],
+      });
+      requestAnimationFrame(() => {
+        layoutScatterZoom(chart);
+        requestAnimationFrame(() => layoutScatterZoom(chart));
       });
     }
 
@@ -2222,7 +2570,7 @@
       const meta = indicatorMeta(state.indicator);
       document.getElementById("ov-tableSortLabel").textContent = meta?.label || state.indicator;
       const modeLabel = document.getElementById("ov-tableModeLabel");
-      if (modeLabel) modeLabel.textContent = state.mode === "regions" ? "Region" : "Region → Country";
+      if (modeLabel) modeLabel.textContent = state.mode === "regions" ? "Geo-region" : "Geo-region → Country";
 
       let rows = Object.keys(share).map((key) => {
         const area = useRegions ? key : share[key].area;
@@ -2260,12 +2608,12 @@
       const sortVals = top.map((r) => r[sortKey]);
       const scale = scaleFor(state.indicator);
 
-      const deltaLabel = state.deltaMode === "y2015" ? "Δ vs 2015" : "Δ YoY";
+      const deltaLabel = state.deltaMode === "y2015" ? "Δ vs 2015" : "Δ vs previous year";
       const cols = [
-        { id: "area", label: useMatrix ? "Region → Country" : (useRegions ? "Region" : "Country"), always: true },
-        { id: "gdp", label: "GDP mUSD" },
+        { id: "area", label: useMatrix ? "Geo-region → Country" : (useRegions ? "Geo-region" : "Country"), always: true },
+        { id: "gdp", label: "GDP USD" },
         { id: "gdpPc", label: "GDP/cap", mapId: "gdpPc" },
-        { id: "vaAff", label: "VA AFF mUSD" },
+        { id: "vaAff", label: "VA AFF USD" },
         { id: "share", label: "Share AFF %", mapId: "shareAff" },
         { id: "shareMfg", label: "Share Mfg %" },
         { id: "aoi", label: "AOI", mapId: "aoi" },
@@ -2284,7 +2632,16 @@
         else if (kind === "aoi") text = fmt.num(raw, 2);
         else if (kind === "num0") text = fmt.num(raw, 0);
         else if (kind === "num1") text = fmt.num(raw, 1);
-        else if (kind === "delta") text = state.indicator === "shareAff" ? fmt.signed(raw, 2) : fmt.signed(raw, 1) + (raw == null ? "" : "%");
+        else if (kind === "delta") {
+          if (raw == null || Number.isNaN(Number(raw))) text = "—";
+          else {
+            const n = Number(raw);
+            const cls = n >= 0 ? "up" : "down";
+            const d = state.indicator === "shareAff" ? 2 : 1;
+            const unit = state.indicator === "shareAff" ? "" : "%";
+            text = `<span class="td-delta ${cls}"><span class="arrow">${n >= 0 ? "↑" : "↓"}</span> ${Math.abs(n).toFixed(d)}${unit}</span>`;
+          }
+        }
         const isActive = (id === sortKey);
         if (isActive && raw != null) {
           return `<td><span class="heat" style="background:${heat};color:${contrastText(heat)}">${text}</span></td>`;
@@ -2477,8 +2834,8 @@
     const MACRO_MAP_INDICATORS = [
       { id: "shareAff", label: "Share AFF in GDP (%)", unit: "%", scale: "green" },
       { id: "gdpPc", label: "GDP per capita (USD 2015)", unit: "USD", scale: "blue" },
-      { id: "gdpGrowth", label: "GDP growth YoY (% 2015)", unit: "%", scale: "orange" },
-      { id: "vaGrowth", label: "VA AFF growth YoY (% 2015)", unit: "%", scale: "blue" },
+      { id: "gdpGrowth", label: "GDP annual growth · 2015 prices", unit: "%", scale: "orange" },
+      { id: "vaGrowth", label: "VA AFF annual growth · 2015 prices", unit: "%", scale: "blue" },
     ];
 
     const state = {
@@ -2596,7 +2953,7 @@
     }
 
     function scopeArea() {
-      // без выбора — World (или peer-агрегат); иначе выбранная территория
+      // no selection — World (or peer aggregate); else selected territory
       if (!state.country) {
         if (state.peer && state.peer !== "All") {
           return state.data.peers?.[state.peer]?.area || "World";
@@ -2739,7 +3096,7 @@
         maxBounds: [[-60, -180], [85, 180]],
         maxBoundsViscosity: 1,
       });
-      // мир «на вылет» в рамке виджета — без белого поля слева
+      // world flush in widget frame — no white margin on the left
       state.map.fitBounds([[-48, -168], [72, 168]], { animate: false, padding: [0, 0] });
     }
 
@@ -2769,8 +3126,8 @@
     }
 
     function fixAntimeridian(fc) {
-      // Полоса на карте = заливка полигонов, пересекающих 180° (часто Россия).
-      // Разрезаем MultiPolygon на отдельные Polygon и сдвигаем в [-180, 180].
+      // Map stripe = fill of polygons crossing 180° (often Russia).
+      // Split MultiPolygon into Polygons and shift into [-180, 180].
       const features = [];
       fc.features.forEach((f) => {
         if (!f.geometry) return;
@@ -2856,8 +3213,8 @@
           const selected = row && row.area === state.country;
           return {
             fillColor: inPeer ? colorFor(row?.value, vals, colors) : "#e8e0d8",
-            weight: selected ? 1.5 : 0,
-            color: selected ? accent() : "#ffffff",
+            weight: selected ? 3.75 : 0,
+            color: selected ? "#f3b291" : "#ffffff",
             fillOpacity: inPeer ? 1 : 0.35,
             stroke: selected,
           };
@@ -2901,8 +3258,8 @@
       const t = scopeTrends();
       const ac = accent();
       const specs = [
-        { key: "gdp", label: "GDP", series: t.gdp, fmt: (v) => fmt.num(v, 1) + " mUSD" },
-        { key: "vaAff", label: "VA AFF", series: t.vaAff, fmt: (v) => fmt.num(v, 1) + " mUSD" },
+        { key: "gdp", label: "GDP", series: t.gdp, fmt: (v) => fmt.num(v, 1) + " USD" },
+        { key: "vaAff", label: "VA AFF", series: t.vaAff, fmt: (v) => fmt.num(v, 1) + " USD" },
         { key: "shareAff", label: "Share AFF", series: t.shareAff, fmt: (v) => fmt.pct(v) },
         { key: "gdpGrowth", label: "GDP growth", series: t.gdpGrowth, fmt: (v) => fmt.signed(v, 1) + "%" },
         { key: "vaGrowth", label: "VA growth", series: t.vaGrowth, fmt: (v) => fmt.signed(v, 1) + "%" },
@@ -2955,7 +3312,7 @@
       setHtmlLegend("mc-trendLegend", [
         { color: ac, label: "GDP growth" },
         { color: sec, label: "VA AFF growth" },
-        { color: ac, label: scopeArea() + " · " + state.year },
+        { color: "#3f5c35", label: scopeArea() + " · " + state.year },
       ]);
       const pointRadius = years.map((y) => (y === state.year ? 4 : 0));
       ensureChart("trend", "mc-trendChart", {
@@ -2964,7 +3321,7 @@
           labels: years,
           datasets: [
             {
-              label: "GDP growth %",
+              label: "GDP growth % (left)",
               data: years.map((y) => seriesVal(t.gdpGrowth, y)),
               borderColor: ac,
               backgroundColor: hexAlpha(ac, 0.12),
@@ -2975,14 +3332,14 @@
               yAxisID: "y",
             },
             {
-              label: "VA AFF growth %",
+              label: "VA AFF growth % (right)",
               data: years.map((y) => seriesVal(t.vaGrowth, y)),
               borderColor: sec,
               tension: 0.2,
               pointRadius,
               pointHoverRadius: 5,
               borderWidth: 2,
-              yAxisID: "y",
+              yAxisID: "y1",
               borderDash: [4, 3],
             },
           ],
@@ -2994,6 +3351,23 @@
           plugins: {
             legend: { display: false },
             yearMarker: { index: yearIdx },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
           },
           scales: {
             x: {
@@ -3005,7 +3379,7 @@
               },
               ticks: {
                 color: "#5a6f7a",
-                font: { size: 10 },
+                font: { size: 11 },
                 autoSkip: false,
                 minRotation: 45,
                 maxRotation: 45,
@@ -3014,13 +3388,23 @@
             },
             y: {
               position: "left",
-              title: { display: true, text: "growth %", color: ac, font: { size: 11 } },
+              title: { display: true, text: "GDP growth %", color: ac, font: { size: 11 } },
               ticks: {
                 color: ac,
                 font: { size: 11 },
                 callback(v) { return Number(v).toFixed(0) + "%"; },
               },
               grid: { color: "#e2ebdc" },
+            },
+            y1: {
+              position: "right",
+              title: { display: true, text: "VA AFF growth %", color: sec, font: { size: 11 } },
+              ticks: {
+                color: sec,
+                font: { size: 11 },
+                callback(v) { return Number(v).toFixed(0) + "%"; },
+              },
+              grid: { drawOnChartArea: false },
             },
           },
         },
@@ -3078,10 +3462,29 @@
             state.country = row.area;
             renderAll();
           },
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
+          },
           scales: {
-            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { font: { size: 10 } } },
-            y: { ticks: { autoSkip: false, font: { size: 11 } }, grid: { display: false } },
+            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { color: "#5a6f7a", font: { size: 11 } } },
+            y: { ticks: { color: "#5a6f7a", autoSkip: false, font: { size: 11 } }, grid: { display: false } },
           },
         },
       });
@@ -3137,10 +3540,29 @@
             state.country = row.area;
             renderAll();
           },
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
+          },
           scales: {
-            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { font: { size: 10 } } },
-            y: { ticks: { font: { size: 11 } }, grid: { display: false } },
+            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { color: "#5a6f7a", font: { size: 11 } } },
+            y: { ticks: { color: "#5a6f7a", font: { size: 11 } }, grid: { display: false } },
           },
         },
       });
@@ -3148,7 +3570,14 @@
 
     function renderScatter() {
       const y = String(state.year);
-      const base = "2015";
+      const baseYear = state.deltaMode === "y2015" ? 2015 : state.year - 1;
+      const base = String(baseYear);
+      const titleEl = document.getElementById("mc-shiftTitle");
+      if (titleEl) {
+        titleEl.textContent = state.deltaMode === "y2015"
+          ? "Shift · Δ Share AFF vs 2015 (p.p.)"
+          : "Shift · Δ Share AFF vs previous year (p.p.)";
+      }
       let rows = [];
       if (state.mode === "regions") {
         const cur = state.data.regionMaps?.shareAff?.[y] || {};
@@ -3172,7 +3601,6 @@
       rows.sort((a, b) => Math.abs(b.value) - Math.abs(a.value));
       rows = rows.slice(0, state.mode === "regions" ? 5 : 15);
       const ac = accent();
-      setHtmlLegend("mc-scatterLegend", [{ color: ac, label: `Share AFF ${state.year} − 2015` }]);
       ensureChart("scatter", "mc-scatterChart", {
         type: "bar",
         data: {
@@ -3194,10 +3622,29 @@
             state.country = row.area;
             renderAll();
           },
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
+          },
           scales: {
-            x: { title: { display: true, text: "п.п.", font: { size: 10 } }, grid: { color: "#e2ebdc" }, ticks: { font: { size: 10 } } },
-            y: { ticks: { font: { size: 11 } }, grid: { display: false } },
+            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { color: "#5a6f7a", font: { size: 11 } } },
+            y: { ticks: { color: "#5a6f7a", font: { size: 11 } }, grid: { display: false } },
           },
         },
       });
@@ -3261,11 +3708,11 @@
       const sortVals = top.map((r) => r[sortKey]);
       const scale = scaleFor(state.indicator);
 
-      const deltaLabel = state.deltaMode === "y2015" ? "Δ vs 2015" : "Δ YoY";
+      const deltaLabel = state.deltaMode === "y2015" ? "Δ vs 2015" : "Δ vs previous year";
       const cols = [
-        { id: "area", label: useMatrix ? "Region → Country" : (useRegions ? "Region" : "Country"), always: true },
-        { id: "gdp", label: "GDP mUSD" },
-        { id: "vaAff", label: "VA AFF mUSD" },
+        { id: "area", label: useMatrix ? "Geo-region → Country" : (useRegions ? "Geo-region" : "Country"), always: true },
+        { id: "gdp", label: "GDP USD" },
+        { id: "vaAff", label: "VA AFF USD" },
         { id: "share", label: "Share AFF %", mapId: "shareAff" },
         { id: "shareMfg", label: "Share Mfg %" },
         { id: "gdpGrowth", label: "GDP Δ%", mapId: "gdpGrowth" },
@@ -3284,7 +3731,16 @@
         else if (kind === "num0") text = fmt.num(raw, 0);
         else if (kind === "num1") text = fmt.num(raw, 1);
         else if (kind === "signed") text = fmt.signed(raw, 1) + (raw == null ? "" : "%");
-        else if (kind === "delta") text = state.indicator === "shareAff" ? fmt.signed(raw, 2) : fmt.signed(raw, 1) + (raw == null ? "" : "%");
+        else if (kind === "delta") {
+          if (raw == null || Number.isNaN(Number(raw))) text = "—";
+          else {
+            const n = Number(raw);
+            const cls = n >= 0 ? "up" : "down";
+            const d = state.indicator === "shareAff" ? 2 : 1;
+            const unit = state.indicator === "shareAff" ? "" : "%";
+            text = `<span class="td-delta ${cls}"><span class="arrow">${n >= 0 ? "↑" : "↓"}</span> ${Math.abs(n).toFixed(d)}${unit}</span>`;
+          }
+        }
         if (id === sortKey && raw != null) {
           return `<td><span class="heat" style="background:${heat};color:${contrastText(heat)}">${text}</span></td>`;
         }
@@ -3450,10 +3906,10 @@
     Chart.defaults.plugins.tooltip.titleFont = { size: 12 };
     Chart.defaults.plugins.tooltip.bodyFont = { size: 12 };
 
-    /* Sheet color (Capital = coral). Widgets + map scale; not by map filter. */
-    const SHEET_ACCENT = "#e89a72";
-    const SHEET_SECONDARY = "#c47a55";
-    const SHEET_SCALE = ["#f8e6dc", "#f0c4a8", "#e89a72", "#c47a55", "#8f5538"];
+    /* Sheet color (Capital = Sage Green). Widgets + map scale; not by map filter. */
+    const SHEET_ACCENT = "#659157";
+    const SHEET_SECONDARY = "#a1c084";
+    const SHEET_SCALE = ["#e8f0e0", "#c5dba8", "#a1c084", "#659157", "#3f5c35"];
     const CAPITAL_MAP_INDICATORS = [
       { id: "aoi", label: "Agriculture Orientation Index", unit: "index", scale: "orange" },
       { id: "air", label: "AIR — GFCF AFF / VA (%)", unit: "%", scale: "blue" },
@@ -3469,6 +3925,7 @@
       country: null,
       deltaMode: "yoy",
       peer: "All",
+      scatterFocus: 100,
       expandedRegions: {},
       map: null,
       geo: null,
@@ -3495,6 +3952,18 @@
         return (n > 0 ? "+" : "") + n.toFixed(d);
       },
     };
+
+    function percentile(arr, p) {
+      const a = arr.filter((v) => Number.isFinite(v)).slice().sort((x, y) => x - y);
+      if (!a.length) return null;
+      if (p >= 100) return a[a.length - 1];
+      if (p <= 0) return a[0];
+      const i = (p / 100) * (a.length - 1);
+      const lo = Math.floor(i);
+      const hi = Math.ceil(i);
+      if (lo === hi) return a[lo];
+      return a[lo] + (a[hi] - a[lo]) * (i - lo);
+    }
 
     function accent() {
       return SHEET_ACCENT;
@@ -3575,7 +4044,7 @@
     }
 
     function scopeArea() {
-      // без выбора — World (или peer-агрегат); иначе выбранная территория
+      // no selection — World (or peer aggregate); else selected territory
       if (!state.country) {
         if (state.peer && state.peer !== "All") {
           return state.data.peers?.[state.peer]?.area || "World";
@@ -3645,6 +4114,12 @@
         state.year = Number(yearInput.value);
         document.getElementById("cp-yearLabel").textContent = state.year;
         renderAll();
+      });
+      const zoomInput = document.getElementById("cp-scatterZoom");
+      zoomInput.value = state.scatterFocus;
+      zoomInput.addEventListener("input", () => {
+        state.scatterFocus = Number(zoomInput.value);
+        renderScatter();
       });
       indSeg.querySelectorAll("button").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -3718,7 +4193,7 @@
         maxBounds: [[-60, -180], [85, 180]],
         maxBoundsViscosity: 1,
       });
-      // мир «на вылет» в рамке виджета — без белого поля слева
+      // world flush in widget frame — no white margin on the left
       state.map.fitBounds([[-48, -168], [72, 168]], { animate: false, padding: [0, 0] });
     }
 
@@ -3748,8 +4223,8 @@
     }
 
     function fixAntimeridian(fc) {
-      // Полоса на карте = заливка полигонов, пересекающих 180° (часто Россия).
-      // Разрезаем MultiPolygon на отдельные Polygon и сдвигаем в [-180, 180].
+      // Map stripe = fill of polygons crossing 180° (often Russia).
+      // Split MultiPolygon into Polygons and shift into [-180, 180].
       const features = [];
       fc.features.forEach((f) => {
         if (!f.geometry) return;
@@ -3835,8 +4310,8 @@
           const selected = row && row.area === state.country;
           return {
             fillColor: inPeer ? colorFor(row?.value, vals, colors) : "#e8e0d8",
-            weight: selected ? 1.5 : 0,
-            color: selected ? accent() : "#ffffff",
+            weight: selected ? 3.75 : 0,
+            color: selected ? "#f3b291" : "#ffffff",
             fillOpacity: inPeer ? 1 : 0.35,
             stroke: selected,
           };
@@ -3890,8 +4365,8 @@
         if (a != null && b != null && b !== 0) shareGfcf[ys] = (a / b) * 100;
       });
       const specs = [
-        { key: "gfcfAff", label: "GFCF AFF", series: t.gfcfAff, fmt: (v) => fmt.num(v, 1) + " mUSD" },
-        { key: "ncs", label: "NCS", series: t.ncs, fmt: (v) => fmt.num(v, 1) + " mUSD" },
+        { key: "gfcfAff", label: "GFCF AFF", series: t.gfcfAff, fmt: (v) => fmt.num(v, 1) + " USD" },
+        { key: "ncs", label: "NCS", series: t.ncs, fmt: (v) => fmt.num(v, 1) + " USD" },
         { key: "aoi", label: "AOI", series: t.aoi, fmt: (v) => fmt.num(v, 2) },
         { key: "air", label: "AIR", series: t.air, fmt: (v) => fmt.pct(v) },
         { key: "shareGfcf", label: "GFCF AFF / GFCF", series: shareGfcf, fmt: (v) => fmt.pct(v) },
@@ -3951,7 +4426,7 @@
       setHtmlLegend("cp-trendLegend", [
         { color: ac, label: "GFCF AFF" },
         { color: ncsColor, label: "Net Capital Stock" },
-        { color: ac, label: scopeArea() + " · " + state.year },
+        { color: "#3f5c35", label: scopeArea() + " · " + state.year },
       ]);
       const pointRadius = years.map((y) => (y === state.year ? 4 : 0));
       ensureChart("trend", "cp-trendChart", {
@@ -3960,7 +4435,7 @@
           labels: years,
           datasets: [
             {
-              label: "GFCF AFF (лев. ось)",
+              label: "GFCF AFF (left axis)",
               data: years.map((y) => seriesVal(t.gfcfAff, y)),
               borderColor: ac,
               backgroundColor: hexAlpha(ac, 0.12),
@@ -3971,7 +4446,7 @@
               yAxisID: "y",
             },
             {
-              label: "NCS (прав. ось)",
+              label: "NCS (right axis)",
               data: years.map((y) => seriesVal(t.ncs, y)),
               borderColor: ncsColor,
               tension: 0.2,
@@ -3990,6 +4465,23 @@
           plugins: {
             legend: { display: false },
             yearMarker: { index: yearIdx },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
           },
           scales: {
             x: {
@@ -4001,7 +4493,7 @@
               },
               ticks: {
                 color: "#5a6f7a",
-                font: { size: 10 },
+                font: { size: 11 },
                 autoSkip: false,
                 minRotation: 45,
                 maxRotation: 45,
@@ -4010,13 +4502,13 @@
             },
             y: {
               position: "left",
-              title: { display: true, text: "GFCF AFF mUSD", color: ac, font: { size: 11 } },
+              title: { display: true, text: "GFCF AFF USD", color: ac, font: { size: 11 } },
               ticks: { color: ac, font: { size: 11 }, callback: tickM },
               grid: { color: "#e2ebdc" },
             },
             y1: {
               position: "right",
-              title: { display: true, text: "NCS mUSD", color: ncsColor, font: { size: 11 } },
+              title: { display: true, text: "NCS USD", color: ncsColor, font: { size: 11 } },
               ticks: { color: ncsColor, font: { size: 11 }, callback: tickM },
               grid: { drawOnChartArea: false },
             },
@@ -4076,10 +4568,29 @@
             state.country = row.area;
             renderAll();
           },
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
+          },
           scales: {
-            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { font: { size: 10 } } },
-            y: { ticks: { autoSkip: false, font: { size: 11 } }, grid: { display: false } },
+            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { color: "#5a6f7a", font: { size: 11 } } },
+            y: { ticks: { color: "#5a6f7a", autoSkip: false, font: { size: 11 } }, grid: { display: false } },
           },
         },
       });
@@ -4136,10 +4647,29 @@
             state.country = row.area;
             renderAll();
           },
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
+          },
           scales: {
-            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { font: { size: 10 } } },
-            y: { ticks: { font: { size: 11 } }, grid: { display: false } },
+            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { color: "#5a6f7a", font: { size: 11 } } },
+            y: { ticks: { color: "#5a6f7a", font: { size: 11 } }, grid: { display: false } },
           },
         },
       });
@@ -4174,16 +4704,38 @@
           : 0.5 * (airVals[airVals.length / 2 - 1] + airVals[airVals.length / 2]))
         : 0;
       const ac = accent();
-      const ring = secondary(); // на шаг темнее заливки листа
-      setHtmlLegend("cp-scatterLegend", [
-        { color: ac, label: "страна / регион" },
-        { color: ac, label: "AOI=1 · медиана AIR" },
-      ]);
+      const ring = secondary(); // one step darker than sheet fill
+      const modeLabel = document.getElementById("cp-scatterModeLabel");
+      if (modeLabel) modeLabel.textContent = state.mode === "regions" ? "geo-regions" : "countries";
       const points = rows.map((r) => ({ x: r.x, y: r.y, area: r.area }));
+      const xs = points.map((p) => p.x);
+      const ys = points.map((p) => p.y);
+      const focus = state.scatterFocus;
+      const xMax = percentile(xs, focus);
+      const yMax = percentile(ys, focus);
+      const xMin = xs.length ? Math.min(...xs) : 0;
+      const yMin = ys.length ? Math.min(0, ...ys) : 0;
+      const xPad = xMax != null ? Math.max((xMax - xMin) * 0.04, 0.05) : 0;
+      const yPad = yMax != null ? Math.max((yMax - yMin) * 0.06, 0.5) : 0;
       const bg = points.map((p) => (p.area === state.country ? ac : hexAlpha(ac, 0.75)));
       const border = points.map((p) => (p.area === state.country ? ring : ring));
       const rad = points.map((p) => (p.area === state.country ? 7 : 4));
-      ensureChart("scatter", "cp-scatterChart", {
+
+      function layoutScatterZoom(chart) {
+        const wrap = document.querySelector("#cp-scatterCard .scatter-zoom");
+        const body = document.querySelector("#cp-scatterCard .scatter-body");
+        const canvas = chart?.canvas;
+        if (!wrap || !body || !canvas || !chart?.chartArea) return;
+        const ca = chart.chartArea;
+        const h = ca.bottom - ca.top;
+        if (!(h > 1)) return;
+        const bodyRect = body.getBoundingClientRect();
+        const canvasRect = canvas.getBoundingClientRect();
+        wrap.style.top = `${(canvasRect.top - bodyRect.top) + ca.top}px`;
+        wrap.style.height = `${h}px`;
+      }
+
+      const chart = ensureChart("scatter", "cp-scatterChart", {
         type: "scatter",
         data: {
           datasets: [{
@@ -4203,6 +4755,7 @@
           responsive: true,
           maintainAspectRatio: false,
           layout: { padding: { top: 14, right: 8, bottom: 4, left: 4 } },
+          onResize(c) { layoutScatterZoom(c); },
           onClick(_e, els, chart) {
             if (!els.length) return;
             const pt = chart.data.datasets[0].data[els[0].index];
@@ -4224,20 +4777,29 @@
           },
           scales: {
             x: {
-              title: { display: true, text: "AOI", font: { size: 10 } },
+              min: focus < 100 ? xMin - xPad : undefined,
+              max: focus < 100 && xMax != null ? xMax + xPad : undefined,
+              title: { display: false },
               grid: { color: "#e2ebdc" },
-              ticks: { font: { size: 10 } },
-              grace: "8%",
+              ticks: { color: "#5a6f7a", font: { size: 11 } },
+              grace: focus < 100 ? 0 : "8%",
             },
             y: {
-              title: { display: true, text: "AIR %", font: { size: 10 } },
+              min: focus < 100 ? yMin - yPad : undefined,
+              max: focus < 100 && yMax != null ? yMax + yPad : undefined,
+              title: { display: false },
               grid: { color: "#e2ebdc" },
-              ticks: { font: { size: 10 } },
-              grace: "8%",
+              ticks: { color: "#5a6f7a", font: { size: 11 } },
+              grace: focus < 100 ? 0 : "8%",
             },
           },
         },
-        plugins: [{
+        plugins: [
+          {
+            id: "cpScatterZoomLayout",
+            afterLayout(c) { layoutScatterZoom(c); },
+          },
+          {
           id: "quadrantGuides",
           afterDatasetsDraw(chart) {
             const g = chart.options.plugins.quadrantGuides;
@@ -4262,24 +4824,44 @@
               ctx.lineTo(chartArea.right, yPix);
               ctx.stroke();
             }
-            // подписи зон — иначе поле квадранта выглядит пустым
+            // zone labels — arrow colors match KPI cards (up sage / down ginger)
             ctx.setLineDash([]);
-            ctx.fillStyle = "rgba(90,111,122,0.85)";
-            ctx.font = "600 10px Segoe UI, system-ui, sans-serif";
             const pad = 6;
             const labels = [
-              { t: "AOI<1 · AIR↑", x: chartArea.left + pad, y: chartArea.top + 12, align: "left" },
-              { t: "AOI>1 · AIR↑", x: chartArea.right - pad, y: chartArea.top + 12, align: "right" },
-              { t: "AOI<1 · AIR↓", x: chartArea.left + pad, y: chartArea.bottom - 6, align: "left" },
-              { t: "AOI>1 · AIR↓", x: chartArea.right - pad, y: chartArea.bottom - 6, align: "right" },
+              { base: "AOI<1 · AIR", arrow: "↑", up: true, x: chartArea.left + pad, y: chartArea.top + 12, align: "left" },
+              { base: "AOI>1 · AIR", arrow: "↑", up: true, x: chartArea.right - pad, y: chartArea.top + 12, align: "right" },
+              { base: "AOI<1 · AIR", arrow: "↓", up: false, x: chartArea.left + pad, y: chartArea.bottom - 6, align: "left" },
+              { base: "AOI>1 · AIR", arrow: "↓", up: false, x: chartArea.right - pad, y: chartArea.bottom - 6, align: "right" },
             ];
             labels.forEach((L) => {
-              ctx.textAlign = L.align;
-              ctx.fillText(L.t, L.x, L.y);
+              ctx.font = "600 11px Segoe UI, system-ui, sans-serif";
+              const baseW = ctx.measureText(L.base).width;
+              ctx.font = "700 12px Segoe UI, system-ui, sans-serif";
+              const arrowW = ctx.measureText(L.arrow).width;
+              let baseX = L.x;
+              let arrowX = L.x;
+              if (L.align === "left") {
+                ctx.textAlign = "left";
+                arrowX = L.x + baseW;
+              } else {
+                ctx.textAlign = "right";
+                baseX = L.x - arrowW;
+                arrowX = L.x;
+              }
+              ctx.fillStyle = "rgba(90,111,122,0.85)";
+              ctx.font = "600 11px Segoe UI, system-ui, sans-serif";
+              ctx.fillText(L.base, baseX, L.y);
+              ctx.fillStyle = L.up ? "#659157" : "#a65d3b";
+              ctx.font = "700 12px Segoe UI, system-ui, sans-serif";
+              ctx.fillText(L.arrow, arrowX, L.y);
             });
             ctx.restore();
           },
         }],
+      });
+      requestAnimationFrame(() => {
+        layoutScatterZoom(chart);
+        requestAnimationFrame(() => layoutScatterZoom(chart));
       });
     }
 
@@ -4344,9 +4926,9 @@
       const sortVals = top.map((r) => r[sortKey]);
       const scale = scaleFor(state.indicator);
 
-      const deltaLabel = state.deltaMode === "y2015" ? "Δ vs 2015" : "Δ YoY";
+      const deltaLabel = state.deltaMode === "y2015" ? "Δ vs 2015" : "Δ vs previous year";
       const cols = [
-        { id: "area", label: useMatrix ? "Region → Country" : (useRegions ? "Region" : "Country") },
+        { id: "area", label: useMatrix ? "Geo-region → Country" : (useRegions ? "Geo-region" : "Country") },
         { id: "gfcfAff", label: "GFCF AFF", mapId: "gfcfAff" },
         { id: "ncs", label: "NCS", mapId: "ncs" },
         { id: "aoi", label: "AOI", mapId: "aoi" },
@@ -4366,8 +4948,15 @@
         else if (kind === "num1") text = fmt.num(raw, 1);
         else if (kind === "num2") text = fmt.num(raw, 2);
         else if (kind === "delta") {
-          if (state.indicator === "aoi" || state.indicator === "air") text = fmt.signed(raw, 2);
-          else text = fmt.signed(raw, 1) + (raw == null ? "" : "%");
+          if (raw == null || Number.isNaN(Number(raw))) text = "—";
+          else {
+            const n = Number(raw);
+            const cls = n >= 0 ? "up" : "down";
+            const pp = state.indicator === "aoi" || state.indicator === "air";
+            const d = pp ? 2 : 1;
+            const unit = pp ? "" : "%";
+            text = `<span class="td-delta ${cls}"><span class="arrow">${n >= 0 ? "↑" : "↓"}</span> ${Math.abs(n).toFixed(d)}${unit}</span>`;
+          }
         }
         if (id === sortKey && raw != null) {
           return `<td><span class="heat" style="background:${heat};color:${contrastText(heat)}">${text}</span></td>`;
@@ -4532,10 +5121,10 @@
     Chart.defaults.plugins.tooltip.titleFont = { size: 12 };
     Chart.defaults.plugins.tooltip.bodyFont = { size: 12 };
 
-    /* Sheet color (Country = Sky Surge). Widgets + map scale; not by map filter. */
-    const SHEET_ACCENT = "#5db0d0";
+    /* Sheet color (Country = Yale #00557c). Same principle as Overview: accent + secondary + scale — one blue gamut only. Plaque stays sage. */
+    const SHEET_ACCENT = "#00557c";
     const SHEET_SECONDARY = "#2a7fa3";
-    const SHEET_SCALE = ["#e3f3f8", "#b7dceb", "#5db0d0", "#2a7fa3", "#1a6a88"];
+    const SHEET_SCALE = ["#dceef5", "#a8d4e8", "#5db0d0", "#2a7fa3", "#00557c"];
     const COUNTRY_MAP_INDICATORS = [
       { id: "shareAff", label: "Share AFF in GDP (%)", unit: "%", scale: "green" },
       { id: "gdpPc", label: "GDP per capita (USD 2015)", unit: "USD", scale: "blue" },
@@ -4675,7 +5264,7 @@
       if (!sel) return;
       const allowed = peerMemberNames();
       if (state.country && allowed.length && !allowed.includes(state.country)) {
-        // страна вне peer → либо сменить peer на All, либо подобрать из peer
+        // country outside peer → switch peer to All, or pick from peer
         if (state.peer && state.peer !== "All") {
           state.country = allowed.find((a) => state.data.trends[a]) || allowed[0] || null;
         }
@@ -4794,7 +5383,7 @@
       });
       sel.addEventListener("change", () => {
         state.country = sel.value || null;
-        // страна вне текущего peer → peer = All
+        // country outside current peer → peer = All
         if (state.peer && state.peer !== "All") {
           const members = peerMemberNames();
           if (state.country && !members.includes(state.country)) {
@@ -4828,7 +5417,7 @@
           document.querySelectorAll("#cy-peerSeg button").forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
           state.peer = btn.dataset.peer;
-          // peer сужает список стран; Кения не в EU → берём первую из peer
+          // peer narrows country list; Kenya not in EU → take first from peer
           ensureCountryPeerLink();
           rebuildCountrySelect();
           renderAll();
@@ -4913,7 +5502,7 @@
     }
 
     function colorFor(value, values, colors) {
-      if (value == null || Number.isNaN(value)) return "#d5ddd0";
+      if (value == null || Number.isNaN(value)) return "#dceef5";
       const sorted = [...values].filter((v) => v != null && !Number.isNaN(v)).sort((a, b) => a - b);
       if (!sorted.length) return colors[0];
       const q = (p) => sorted[Math.min(sorted.length - 1, Math.floor(p * (sorted.length - 1)))];
@@ -4964,9 +5553,9 @@
           const inPeer = !peerSet || (row && peerSet.has(row.area));
           const selected = row && row.area === state.country;
           return {
-            fillColor: inPeer ? colorFor(row?.value, vals, colors) : "#e8e0d8",
-            weight: selected ? 2.5 : 0,
-            color: selected ? accent() : "#ffffff",
+            fillColor: inPeer ? colorFor(row?.value, vals, colors) : "#dceef5",
+            weight: selected ? 3.75 : 0,
+            color: selected ? "#f3b291" : "#ffffff",
             fillOpacity: inPeer ? 1 : 0.35,
             stroke: selected,
           };
@@ -5007,7 +5596,7 @@
       const t = countryTrends();
       const ac = accent();
       const specs = [
-        { key: "gdp", label: "GDP", series: t.gdp, fmt: (v) => fmt.num(v, 1) + " mUSD" },
+        { key: "gdp", label: "GDP", series: t.gdp, fmt: (v) => fmt.num(v, 1) + " USD" },
         { key: "gdpPc", label: "GDP / cap", series: t.gdpPc, fmt: (v) => fmt.num(v, 0) + " USD" },
         { key: "shareAff", label: "Share AFF", series: t.shareAff, fmt: (v) => fmt.pct(v) },
         { key: "gdpGrowth", label: "GDP growth", series: t.gdpGrowth, fmt: (v) => fmt.pct(v) },
@@ -5103,10 +5692,29 @@
             syncCountrySelect();
             renderAll();
           },
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
+          },
           scales: {
-            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { font: { size: 10 } } },
-            y: { ticks: { autoSkip: false, font: { size: 11 } }, grid: { display: false } },
+            x: { title: { display: false }, grid: { color: "#e2ebdc" }, ticks: { color: "#5a6f7a", font: { size: 11 } } },
+            y: { ticks: { color: "#5a6f7a", autoSkip: false, font: { size: 11 } }, grid: { display: false } },
           },
         },
       });
@@ -5152,13 +5760,32 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
+          },
           scales: {
-            x: { ticks: { font: { size: 11 } }, grid: { display: false } },
+            x: { ticks: { color: "#5a6f7a", font: { size: 11 } }, grid: { display: false } },
             y: {
-              title: { display: true, text: "%", font: { size: 10 } },
+              title: { display: true, text: "%", color: "#5a6f7a", font: { size: 11 } },
               grid: { color: "#e2ebdc" },
-              ticks: { font: { size: 10 } },
+              ticks: { color: "#5a6f7a", font: { size: 11 } },
             },
           },
         },
@@ -5174,7 +5801,7 @@
       const years = (state.data.meta.yearsJoint || []).filter((y) => y <= state.year);
       const yearIdx = years.length ? years.length - 1 : -1;
       const ac = accent();
-      const worldColor = "#3f5c35";
+      const worldColor = "#5db0d0";
       const peerColor = secondary();
       const pLabel = peerLabel();
       setHtmlLegend("cy-trendLegend", [
@@ -5236,6 +5863,19 @@
                 title(items) {
                   return meta.label + " · " + (items[0]?.label ?? "");
                 },
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
               },
             },
           },
@@ -5249,7 +5889,7 @@
               },
               ticks: {
                 color: "#5a6f7a",
-                font: { size: 10 },
+                font: { size: 11 },
                 autoSkip: false,
                 minRotation: 45,
                 maxRotation: 45,
@@ -5257,7 +5897,7 @@
               grid: { color: "#e2ebdc" },
             },
             y: {
-              title: { display: true, text: meta.label, color: "#5a6f7a", font: { size: 10 } },
+              title: { display: true, text: meta.label, color: "#5a6f7a", font: { size: 11 } },
               ticks: {
                 color: "#5a6f7a",
                 font: { size: 11 },
@@ -5341,11 +5981,15 @@
 
       const countryData = metrics.map((m) => normFor(state.country, m.id));
       const peerData = metrics.map((m) => medianNorm(m.id));
+      const plotted = [...countryData, ...peerData].filter((v) => v != null && Number.isFinite(v));
+      const rMax = plotted.length ? Math.max(...plotted) : 100;
+      // Same relative outer-ring value on all 5 vertices (e.g. 37) — matches scale.max
+      const edgeText = Number(rMax).toFixed(0);
       const ac = accent();
-      const sec = secondary();
+      const sec = "#5db0d0"; /* same as World on Trend */
       setHtmlLegend("cy-scatterLegend", [
         { color: ac, label: state.country || "Country" },
-        { color: sec, label: "Медиана peer" },
+        { color: sec, label: "Peer median" },
       ]);
 
       ensureChart("radar", "cy-scatterChart", {
@@ -5364,7 +6008,7 @@
               fill: true,
             },
             {
-              label: "Медиана peer",
+              label: "Peer median",
               data: peerData,
               borderColor: sec,
               backgroundColor: hexAlpha(sec, 0.08),
@@ -5378,18 +6022,95 @@
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
+          layout: { padding: { top: 30, right: 36, bottom: 16, left: 36 } },
+          plugins: {
+            legend: { display: false },
+            radarEdgeLabels: { text: edgeText },
+            tooltip: {
+              callbacks: {
+                label(ctx) {
+                  const name = ctx.dataset.label ? ctx.dataset.label + ": " : "";
+                  const p = ctx.parsed;
+                  let v = null;
+                  if (p != null && typeof p === "number") v = p;
+                  else if (p && ctx.chart.options.indexAxis === "y" && typeof p.x === "number") v = p.x;
+                  else if (p && typeof p.y === "number") v = p.y;
+                  else if (p && typeof p.r === "number") v = p.r;
+                  if (typeof v === "number" && Number.isFinite(v)) return name + v.toFixed(2);
+                  const fv = parseFloat(String(ctx.formattedValue ?? "").replace(",", "."));
+                  if (Number.isFinite(fv)) return name + fv.toFixed(2);
+                  return name + (ctx.formattedValue ?? "");
+                },
+              },
+            },
+          },
           scales: {
             r: {
               min: 0,
-              max: 100,
-              ticks: { display: false, backdropColor: "transparent" },
-              pointLabels: { font: { size: 11 }, color: "#5a6f7a" },
+              max: rMax > 0 ? rMax : 100,
+              ticks: {
+                display: true,
+                color: "#5a6f7a",
+                backdropColor: "transparent",
+                font: { size: 11 },
+                callback() {
+                  return "";
+                },
+              },
+              pointLabels: {
+                display: false,
+                callback: () => "",
+                font: { size: 0 },
+              },
               grid: { color: "#e2ebdc" },
               angleLines: { color: "#e2ebdc" },
             },
           },
         },
+        plugins: [{
+          id: "radarEdgeLabels",
+          afterDraw(chart) {
+            const text = chart.options.plugins.radarEdgeLabels?.text;
+            const scale = chart.scales.r;
+            if (!scale) return;
+            const names = chart.data.labels || [];
+            const n = names.length;
+            const outer = scale.getDistanceFromCenterForValue(scale.max);
+            const cx = scale.xCenter;
+            const cy = scale.yCenter;
+            // 0 AFF top; 1/4 sides; 2/3 bottom
+            // Side names: +4 up + larger radial gap so they don't stick to edge digits
+            // Top name: +2 up from prior; edge digit stays on the ring
+            const nameDy = [0, -4, 4, 4, -4];
+            const edgeDy = [2, 0, 4, 4, 0];
+            const edgeOut = [10, 10, 14, 14, 10];
+            const nameOut = [22, 36, 30, 30, 36];
+            const { ctx } = chart;
+            ctx.save();
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            for (let i = 0; i < n; i++) {
+              const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
+              const eR = outer + (edgeOut[i] ?? 12);
+              const nR = outer + (nameOut[i] ?? 26);
+              const xEdge = cx + Math.cos(angle) * eR;
+              const yEdge = cy + Math.sin(angle) * eR + (edgeDy[i] ?? 0);
+              const xName = cx + Math.cos(angle) * nR;
+              const yName = cy + Math.sin(angle) * nR + (nameDy[i] ?? 0);
+              if (names[i]) {
+                ctx.font = "11px Segoe UI, system-ui, sans-serif";
+                ctx.fillStyle = "#5a6f7a";
+                ctx.fillText(String(names[i]), xName, yName);
+              }
+              if (text != null && text !== "") {
+                ctx.font = "700 12px Segoe UI, system-ui, sans-serif";
+                ctx.fillStyle = "#00557c";
+                ctx.fillText(String(text), xEdge, yEdge);
+              }
+            }
+            ctx.restore();
+          },
+        }],
       });
     }
 
@@ -5461,9 +6182,9 @@
       const sortVals = top.map((r) => r[sortKey]);
       const scale = scaleFor(state.indicator);
 
-      const deltaLabel = state.deltaMode === "y2015" ? "Δ vs 2015" : "Δ YoY";
+      const deltaLabel = state.deltaMode === "y2015" ? "Δ vs 2015" : "Δ vs previous year";
       const cols = [
-        { id: "area", label: "Region → Country" },
+        { id: "area", label: "Geo-region → Country" },
         { id: "gdp", label: "GDP" },
         { id: "gdpPc", label: "GDP/cap", mapId: "gdpPc" },
         { id: "share", label: "Share", mapId: "shareAff" },
@@ -5484,10 +6205,14 @@
         else if (kind === "num1") text = fmt.num(raw, 1);
         else if (kind === "num2") text = fmt.num(raw, 2);
         else if (kind === "delta") {
-          if (state.indicator === "shareAff" || state.indicator === "aoi" || state.indicator === "air") {
-            text = fmt.signed(raw, 2);
-          } else {
-            text = fmt.signed(raw, 1) + (raw == null ? "" : "%");
+          if (raw == null || Number.isNaN(Number(raw))) text = "—";
+          else {
+            const n = Number(raw);
+            const cls = n >= 0 ? "up" : "down";
+            const pp = state.indicator === "shareAff" || state.indicator === "aoi" || state.indicator === "air";
+            const d = pp ? 2 : 1;
+            const unit = pp ? "" : "%";
+            text = `<span class="td-delta ${cls}"><span class="arrow">${n >= 0 ? "↑" : "↓"}</span> ${Math.abs(n).toFixed(d)}${unit}</span>`;
           }
         }
         if (id === sortKey && raw != null) {
@@ -5643,22 +6368,29 @@
 
   <script>
 (function () {
+  const sheet = document.getElementById("sheet-glossary");
   const body = document.getElementById("gl-body");
   const toc = document.getElementById("gl-tocSeg");
+  const langSeg = document.getElementById("gl-langSeg");
   const CARD_IDS = ["gl-sheets", "gl-money", "gl-macro", "gl-capital", "gl-filters"];
   let sizesLocked = false;
 
-  function lockSizesThenMoveMoney() {
-    if (!body || sizesLocked) return;
-    body.classList.remove("gl-money-down");
+  function clearCardHeights() {
     CARD_IDS.forEach((id) => {
       const el = document.getElementById(id);
       if (el) el.style.height = "";
     });
     const faostat = document.getElementById("gl-faostat");
     if (faostat) faostat.style.height = "";
+  }
 
-    /* Замер как скрин 20: без FAOSTAT, без «Почему 2015», компактные Листы */
+  function lockSizesThenMoveMoney() {
+    if (!body || sizesLocked) return;
+    body.classList.remove("gl-money-down");
+    clearCardHeights();
+    const faostat = document.getElementById("gl-faostat");
+
+    /* Measure as screen 20: no FAOSTAT, no Why 2015, compact Sheets */
     const hideEls = body.querySelectorAll("[data-gl-measure-hide]");
     hideEls.forEach((el) => { el.style.display = "none"; });
     body.classList.add("gl-measure-ref");
@@ -5675,7 +6407,7 @@
       card.style.boxSizing = "border-box";
     });
 
-    /* Деньги по высоте = Фильтры (не эталонная высота Money сверху) */
+    /* Money height = Filters (not the reference Money height when on top) */
     const filters = document.getElementById("gl-filters");
     const money = document.getElementById("gl-money");
     if (filters && money && filters.style.height) {
@@ -5691,6 +6423,22 @@
       faostat.style.boxSizing = "border-box";
     }
     sizesLocked = true;
+  }
+
+  function setLang(lang) {
+    if (!sheet) return;
+    const next = lang === "ru" ? "ru" : "en";
+    sheet.classList.toggle("lang-en", next === "en");
+    sheet.classList.toggle("lang-ru", next === "ru");
+    if (langSeg) {
+      langSeg.querySelectorAll("button[data-gl-lang]").forEach((b) => {
+        b.classList.toggle("active", b.getAttribute("data-gl-lang") === next);
+      });
+    }
+    sizesLocked = false;
+    if (body) body.classList.remove("gl-money-down");
+    clearCardHeights();
+    lockSizesThenMoveMoney();
   }
 
   function jumpTo(id) {
@@ -5713,6 +6461,12 @@
     });
   }
 
+  if (langSeg) {
+    langSeg.querySelectorAll("button[data-gl-lang]").forEach((btn) => {
+      btn.addEventListener("click", () => setLang(btn.getAttribute("data-gl-lang")));
+    });
+  }
+
   window.__FAOSTAT_SHEETS = window.__FAOSTAT_SHEETS || {};
   window.__FAOSTAT_SHEETS.glossary = {
     invalidate() {
@@ -5726,11 +6480,11 @@
     (function () {
       const SHEETS = ["overview", "macro", "capital", "country", "glossary"];
       const TITLES = {
-        overview: "FAOSTAT Macro — Overview · Объёмы экономики и капитал",
-        macro: "FAOSTAT Macro — Macro · Рост и структура AFF",
-        capital: "FAOSTAT Macro — Capital · Инвестиции и капитал AFF",
-        country: "FAOSTAT Macro — Country · Профиль страны",
-        glossary: "FAOSTAT Macro — Glossary · Термины и методология",
+        overview: "FAOSTAT Macro — Overview · Economy volumes and capital",
+        macro: "FAOSTAT Macro — Macro · AFF growth and structure",
+        capital: "FAOSTAT Macro — Capital · AFF investment and capital",
+        country: "FAOSTAT Macro — Country · Country profile",
+        glossary: "FAOSTAT Macro — Glossary · Terms and methodology",
       };
 
       function currentFromHash() {
