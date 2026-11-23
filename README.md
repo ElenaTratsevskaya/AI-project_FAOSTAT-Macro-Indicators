@@ -30,7 +30,7 @@ Interactive dashboard for FAOSTAT Macro Indicators and Capital Stock — AFF eco
 | Macro Indicators (макроиндикаторы) | `Macro-Statistics_Key_Indicators_E_All_Data_(Normalized).csv` |
 | Capital Stock (запас капитала) | `Investment_CapitalStock_E_All_Data_(Normalized).csv` |
 
-Источник данных --> [FAOSTAT-Macro-Indicators]() <br><br>
+ --> [Источник данных](https://www.fao.org/faostat/en/) <br><br>
 
 Денежные ряды — в **постоянных долларах США 2015** (*real USD* / *Value US$, 2015 prices* — постоянные доллары США в ценах 2015). Этот базовый год — как опубликованы серии MK/CS в используемой выгрузке, а не своя переоценка.
 
