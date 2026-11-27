@@ -27,8 +27,9 @@
     * { box-sizing: border-box; }
     html, body {
       margin: 0;
+      width: 100%;
       height: 100%;
-      overflow: auto;
+      overflow: hidden;
       font-family: "Segoe UI", system-ui, sans-serif;
       background: #e8ddd4;
       color: var(--text);
@@ -40,7 +41,7 @@
     .stage {
       width: 1920px;
       height: 1080px;
-      margin: 0 auto;
+      margin: 0;
       background: var(--bg);
       padding: 0;
       display: grid;
@@ -51,6 +52,10 @@
       overflow: hidden;
       box-sizing: border-box;
       outline: 1px solid #ffcab1;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform-origin: top left;
     }
     .left-plaque {
       grid-column: 1;
@@ -6493,6 +6498,20 @@
         return SHEETS.includes(h) ? h : "overview";
       }
 
+      function fitViewport() {
+        const W = 1920;
+        const H = 1080;
+        const scale = Math.min(window.innerWidth / W, window.innerHeight / H);
+        const left = (window.innerWidth - W * scale) / 2;
+        const top = (window.innerHeight - H * scale) / 2;
+        document.querySelectorAll(".stage.sheet").forEach((el) => {
+          el.style.transform = "scale(" + scale + ")";
+          el.style.left = left + "px";
+          el.style.top = top + "px";
+        });
+      }
+      window.__FAOSTAT_FIT = fitViewport;
+
       function showSheet(name) {
         const sheet = SHEETS.includes(name) ? name : "overview";
         SHEETS.forEach((id) => {
@@ -6505,6 +6524,7 @@
           a.classList.toggle("active", a.getAttribute("data-sheet") === sheet);
         });
         document.title = TITLES[sheet] || TITLES.overview;
+        fitViewport();
         const api = window.__FAOSTAT_SHEETS && window.__FAOSTAT_SHEETS[sheet];
         if (api && typeof api.invalidate === "function") {
           requestAnimationFrame(() => {
@@ -6534,7 +6554,17 @@
         });
       });
 
+      window.addEventListener("resize", () => {
+        fitViewport();
+        const sheet = currentFromHash();
+        const api = window.__FAOSTAT_SHEETS && window.__FAOSTAT_SHEETS[sheet];
+        if (api && typeof api.invalidate === "function") {
+          requestAnimationFrame(() => api.invalidate());
+        }
+      });
+      window.addEventListener("orientationchange", () => setTimeout(fitViewport, 100));
       window.addEventListener("hashchange", applyFromHash);
+      fitViewport();
       applyFromHash();
     })();
   </script>
